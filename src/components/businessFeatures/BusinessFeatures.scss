@@ -1,0 +1,78 @@
+.businessFeatures {
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+  background-color: #0d084d;
+  color: white;
+
+  .container {
+    width: 1200px;
+    display: flex;
+
+    .left {
+      padding-right: 50px;
+      flex: 3;
+
+      .semi-heading {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        p {
+          font-size: 0.7rem;
+          font-weight: bold;
+          margin: 0;
+          background-color: rgb(88, 74, 255);
+          border-radius: 10px;
+          padding: 2px 4px;
+        }
+      }
+
+      h1 {
+        width: 400px;
+        i {
+          font-size: 2.3rem;
+          font-family: serif;
+          font-weight: normal;
+        }
+      }
+
+      .feature {
+        margin-bottom: 25px;
+        display: flex;
+        gap: 10px;
+
+        img {
+          height: 22px;
+        }
+
+        p {
+          margin: 0px;
+        }
+      }
+
+      button {
+        background-color: #1dbf73;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        font-size: 1.1rem;
+        border-radius: 5px;
+        margin-top: 30px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #10a15d;
+        }
+      }
+    }
+
+    .right {
+      flex: 4;
+      padding: 40px 0;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

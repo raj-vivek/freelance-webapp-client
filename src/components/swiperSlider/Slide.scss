@@ -1,0 +1,14 @@
+.slide {
+  display: flex;
+  justify-content: center;
+  margin: 80px 0;
+
+  .container {
+    width: 1300px;
+
+    .sectionTitle {
+      margin-bottom: 30px;
+      margin-left: 30px;
+    }
+  }
+}

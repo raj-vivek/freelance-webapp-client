@@ -1,0 +1,50 @@
+.websiteFeatures {
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+  background-color: #f1fdf7;
+
+  .container {
+    width: 1200px;
+    display: flex;
+
+    .left {
+      padding-right: 50px;
+      flex: 3;
+
+      h2 {
+        font-size: 2rem;
+        margin-top: 20px;
+      }
+
+      .features {
+        margin-bottom: 25px;
+        .featureTitle {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+
+          img{
+            height: 25px;
+          }
+          h3 {
+            margin: 0;
+          }
+        }
+
+        p{
+          margin-top: 10px;
+          color: gray;
+        }
+      }
+    }
+
+    .right {
+      flex: 4;
+      padding: 80px 0;
+      video {
+        width: 100%;
+      }
+    }
+  }
+}

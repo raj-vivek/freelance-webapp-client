@@ -1,0 +1,25 @@
+.trustedBy {
+  background-color: rgb(239, 239, 239);
+  display: flex;
+  justify-content: center;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 25px;
+    width: 1000px;
+    font-family: "Montserrat", sans-serif;
+
+    span {
+      font-weight: normal;
+      color: gray;
+    }
+
+    img {
+      height: 35px;
+      opacity: 75%;
+    }
+  }
+}
