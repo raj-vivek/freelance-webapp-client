@@ -1,0 +1,122 @@
+.gigs {
+  display: flex;
+  justify-content: center;
+  margin: 40px;
+  .container {
+    width: 1200px;
+
+    .breadcrumbs {
+      font-size: 0.85rem;
+      color: rgb(111, 111, 111);
+    }
+
+    h1 {
+      margin: 15px 0;
+    }
+
+    p {
+      font-size: 1rem;
+      color: rgb(109, 109, 109);
+    }
+
+    .filters {
+      display: flex;
+      justify-content: space-between;
+
+      .left {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        span {
+          color: #555555;
+        }
+
+        input {
+          padding: 4px;
+          border: 1px solid gray;
+          border-radius: 5px;
+          outline: none;
+
+          &::placeholder {
+            color: grey;
+            font-size: 0.9rem;
+          }
+        }
+
+        button {
+          background-color: #1dbf73;
+          border: none;
+          padding: 6px 10px;
+          border-radius: 4px;
+          color: white;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #17975c;
+          }
+        }
+      }
+
+      .right {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .sortBy {
+          font-size: 0.85rem;
+          color: gray;
+        }
+
+        .sort {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          cursor: pointer;
+          user-select: none;
+
+          .sortType {
+            font-size: 0.9rem;
+            font-weight: bold;
+          }
+
+          img {
+            height: 20px;
+          }
+        }
+
+        .sortMenu {
+          position: absolute;
+          top: 30px;
+          right: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          background-color: white;
+          border: 1px solid lightgrey;
+          padding: 15px;
+          border-radius: 5px;
+
+          font-size: 0.85rem;
+          color: grey;
+
+          span {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .row{
+      display: flex;
+      flex-wrap: wrap;
+
+      .col{
+        max-width: 25%;
+        flex: 25%;
+        display: flex;
+        justify-content: center;
+      }
+    }
+  }
+}
