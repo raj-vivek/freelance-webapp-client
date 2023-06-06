@@ -10,7 +10,7 @@ import "./Slide.scss";
 // register Swiper custom elements
 register();
 
-const Slide = ({ children, slidesPerView, title }) => {
+const Slide = ({ children, slidesPerView, slidesPerGroup, mousewheel }) => {
   const swiperRef = useRef(null);
 
   useEffect(() => {
@@ -18,9 +18,9 @@ const Slide = ({ children, slidesPerView, title }) => {
     const params = {
       navigation: true,
       slidesPerView: slidesPerView,
-      slidesPerGroup: 2,
+      slidesPerGroup: slidesPerGroup,
       rewind: true,
-      mousewheel: true,
+      mousewheel: mousewheel,
 
       injectStyles: [
         `
@@ -54,7 +54,6 @@ const Slide = ({ children, slidesPerView, title }) => {
   return (
     <div className="slide">
       <div className="container">
-        <h1 className="sectionTitle">{title}</h1>
         <div className="sliderContainer">
           <swiper-container ref={swiperRef} init="false">
             {children}
@@ -68,6 +67,8 @@ const Slide = ({ children, slidesPerView, title }) => {
 Slide.propTypes = {
   children: PropTypes.array,
   slidesPerView: PropTypes.number,
+  slidesPerGroup: PropTypes.number,
+  mousewheel: PropTypes.boolean,
   title: PropTypes.string,
 };
 

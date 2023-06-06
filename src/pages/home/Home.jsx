@@ -15,7 +15,7 @@ const Home = () => {
     <div className="home">
       <Featured />
       <TrustedBy />
-      <Slide slidesPerView={5} title="Popular professional services">
+      <Slide slidesPerView={5} slidesPerGroup={2} mousewheel={true}>
         {cards.map((card) => (
           <swiper-slide key={card.id}>
             <CategoryCard card={card} />
@@ -25,10 +25,7 @@ const Home = () => {
       <WebsiteFeatures />
       <MarketPlace />
       <BusinessFeatures />
-      <Slide
-        slidesPerView={4}
-        title="Get inspired with projects made by our freelancers"
-      >
+      <Slide slidesPerView={4} slidesPerGroup={2} mousewheel={true}>
         {projects.map((card) => (
           <swiper-slide key={card.id}>
             <ProjectCard card={card} />
