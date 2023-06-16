@@ -68,7 +68,7 @@ Slide.propTypes = {
   children: PropTypes.array,
   slidesPerView: PropTypes.number,
   slidesPerGroup: PropTypes.number,
-  mousewheel: PropTypes.boolean,
+  mousewheel: PropTypes.bool,
   title: PropTypes.string,
 };
 
