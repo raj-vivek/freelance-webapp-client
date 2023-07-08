@@ -55,7 +55,7 @@ const Navbar = () => {
               onMouseLeave={() => setOpen(false)}
             >
               <img
-                src="https://media.licdn.com/dms/image/D5603AQEC8DaB5ZjPyA/profile-displayphoto-shrink_800_800/0/1681114535756?e=1686787200&v=beta&t=TOkfqz9fnj7-_XAIj7KigDPDgZVCkDcpgFiJ4SrFDQ4"
+                src=".\img\profilePicture.jpg"
                 alt=""
               />
               <span>{currentUser.userName}</span>
