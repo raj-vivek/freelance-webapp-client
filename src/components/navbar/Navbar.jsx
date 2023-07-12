@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Navbar.scss";
+import newRequest from "../../utils/newRequest";
 
 const Navbar = () => {
   // active is false when page is not scrolled, true when page is scrolled. We are changing the navbar styles for if it is scrolled or not.
@@ -26,10 +27,14 @@ const Navbar = () => {
     };
   }, []);
 
-  const currentUser = {
-    id: 1,
-    userName: "Vivek",
-    isSeller: true,
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await newRequest.post("auth/logout");
+    localStorage.setItem("currentUser", null);
+    navigate("/");
   };
 
   return (
@@ -45,23 +50,18 @@ const Navbar = () => {
           <span>Fiverr Business</span>
           <span>Explore</span>
           <span>English</span>
-          {!currentUser.isSeller && <span>Become a Seller</span>}
-          {!currentUser && <span>Sign In</span>}
-          {!currentUser && <button>Join</button>}
-          {currentUser && (
+          {currentUser && !currentUser.isSeller && <span>Become a Seller</span>}
+          {currentUser ? (
             <div
               className="user"
               onMouseEnter={() => setOpen(true)}
               onMouseLeave={() => setOpen(false)}
             >
-              <img
-                src=".\img\profilePicture.jpg"
-                alt=""
-              />
-              <span>{currentUser.userName}</span>
+              <img src={currentUser.img || "/img/noavatar.jpg"} alt="" />
+              <span>{currentUser.username}</span>
               {open && (
                 <div className="options">
-                  {currentUser.isSeller && (
+                  {currentUser && currentUser.isSeller && (
                     <>
                       <Link className="link" to="/mygigs">
                         Gigs
@@ -77,47 +77,56 @@ const Navbar = () => {
                   <Link className="link" to="messages">
                     Messages
                   </Link>
-                  <Link className="link" to="/">
+                  <Link className="link" onClick={handleLogout}>
                     Logout
                   </Link>
                 </div>
               )}
             </div>
+          ) : (
+            <>
+              <Link to="/login" className="link">
+                Sign in
+              </Link>
+              <Link className="link" to="/register">
+                <button className={BGactive ? "bgactive" : ""}>Join</button>
+              </Link>
+            </>
           )}
         </div>
       </div>
-      {(menuActive || pathName!=="/") && (
-          <>
-            <hr />
-            <div className="menu">
-              <Link className="link" to="/">
-                Graphics & Design
-              </Link>
-              <Link className="link" to="/">
-                Video & Animation
-              </Link>
-              <Link className="link" to="/">
-                Writing & Translation
-              </Link>
-              <Link className="link" to="/">
-                AI Services
-              </Link>
-              <Link className="link" to="/">
-                Music & Audio
-              </Link>
-              <Link className="link" to="/">
-                Programming & Tech
-              </Link>
-              <Link className="link" to="/">
-                Business
-              </Link>
-              <Link className="link" to="/">
-                Lifestyle
-              </Link>
-            </div>
-            <hr />
-          </>
-        )}
+      {(menuActive || pathName !== "/") && (
+        <>
+          <hr />
+          <div className="menu">
+            <Link className="link" to="/">
+              Graphics & Design
+            </Link>
+            <Link className="link" to="/">
+              Video & Animation
+            </Link>
+            <Link className="link" to="/">
+              Writing & Translation
+            </Link>
+            <Link className="link" to="/">
+              AI Services
+            </Link>
+            <Link className="link" to="/">
+              Music & Audio
+            </Link>
+            <Link className="link" to="/">
+              Programming & Tech
+            </Link>
+            <Link className="link" to="/">
+              Business
+            </Link>
+            <Link className="link" to="/">
+              Lifestyle
+            </Link>
+          </div>
+          <hr />
+        </>
+      )}
     </div>
   );
 };

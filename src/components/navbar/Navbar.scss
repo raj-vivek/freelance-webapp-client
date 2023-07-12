@@ -93,6 +93,16 @@ body {
           background-color: #1dbf73;
           border-color: #1dbf73;
         }
+
+        &.bgactive {
+          border: 1px solid gray;
+          color: black;
+
+          &:hover {
+            border: 1px solid white;
+            color: white;
+          }
+        }
       }
     }
   }
