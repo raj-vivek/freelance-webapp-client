@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Gigs.scss";
 import GigCard from "../../components/gigCard/GigCard";
-import { gigs } from "../../data";
+import { useQuery } from "@tanstack/react-query";
+import newRequest from "../../utils/newRequest";
+import { useLocation } from "react-router-dom";
 
 const Gigs = () => {
   // sales = Best Seller
@@ -10,11 +12,39 @@ const Gigs = () => {
   // Like: /api/gigs?sort="sales"
   const [sortType, setSortType] = useState("sales");
   const [sortMenuOpen, setSortMenuOpen] = useState(false);
+  const minRef = useRef();
+  const maxRef = useRef();
+
+  const { search } = useLocation();
+  console.log(search);
+  const { isLoading, error, data, refetch } = useQuery({
+    queryKey: ["gigs"],
+    queryFn: () =>
+      newRequest
+        .get(
+          `/gigs${search || "?"}&min=${minRef.current.value}&max=${
+            maxRef.current.value
+          }&sort=${sortType}`
+        )
+        .then((res) => {
+          return res.data;
+        }),
+  });
+
+  console.log(data);
 
   const reSort = (type) => {
     setSortType(type);
     setSortMenuOpen(false);
   };
+
+  const apply = () => {
+    refetch();
+  };
+
+  useEffect(() => {
+    refetch();
+  }, [sortType]);
 
   const toggleSortMenu = () => {
     if (sortMenuOpen) {
@@ -38,9 +68,9 @@ const Gigs = () => {
         <div className="filters">
           <div className="left">
             <span>Budget:</span>
-            <input type="text" placeholder="min" />
-            <input type="text" placeholder="max" />
-            <button>Apply</button>
+            <input ref={minRef} type="text" placeholder="min" />
+            <input ref={maxRef} type="text" placeholder="max" />
+            <button onClick={apply}>Apply</button>
           </div>
           <div className="right">
             <span className="sortBy">Sort By</span>
@@ -63,11 +93,15 @@ const Gigs = () => {
           </div>
         </div>
         <div className="row">
-          {gigs.map((gig) => (
-            <div key={gig.id} className="col">
-              <GigCard item={gig} />
-            </div>
-          ))}
+          {isLoading
+            ? "loading"
+            : error
+            ? "Something went wrong"
+            : data.map((gig) => (
+                <div key={gig._id} className="col">
+                  <GigCard item={gig} />
+                </div>
+              ))}
         </div>
       </div>
     </div>

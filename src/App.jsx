@@ -14,14 +14,20 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import "./App.scss";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
 const App = () => {
+  const queryClient = new QueryClient();
+
   const Layout = () => {
     return (
-      <div className="app">
-        <Navbar />
-        <Outlet />
-        <Footer />
-      </div>
+      <QueryClientProvider client={queryClient}>
+        <div className="app">
+          <Navbar />
+          <Outlet />
+          <Footer />
+        </div>
+      </QueryClientProvider>
     );
   };
 
