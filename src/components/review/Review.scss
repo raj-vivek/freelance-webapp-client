@@ -1,0 +1,76 @@
+.review {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 30px 0;
+    padding: 16px;
+    background-color: rgb(242, 242, 242);
+    border-radius: 10px;
+
+    .user {
+      display: flex;
+      align-items: center;
+
+      img {
+        height: 50px;
+        width: 50px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        span {
+          font-weight: bold;
+        }
+
+        .country {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+
+          img {
+            height: 20px;
+          }
+
+          span {
+            font-weight: normal;
+            font-size: 15px;
+            color: gray;
+          }
+        }
+      }
+    }
+
+    .stars {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      img {
+        height: 18px;
+      }
+      span {
+        color: rgb(239, 211, 0);
+        font-weight: 600;
+        font-size: 18px;
+      }
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .helpful {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      img {
+        height: 15px;
+        margin-left: 5px;
+      }
+    }
+  }

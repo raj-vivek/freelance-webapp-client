@@ -18,25 +18,29 @@
     table {
       width: 100%;
       tr {
-        height: 100px;
+        height: 90px;
+        // background-color: #0e0e0e0f;
 
         th {
           text-align: left;
+          padding: 0 24px;
+          // background-color: #0e0e0e20;
         }
 
         td {
-          padding: 16px 10px;
+          padding: 0 24px;
 
           &:first-child {
             font-weight: bold;
           }
 
-          &:nth-child(2), &:nth-child(3){
+          &:nth-child(2),
+          &:nth-child(3) {
             color: gray;
           }
 
-          h4 {
-            margin: 0 0 0 5px;
+          .lastMessage {
+            padding: 20px;
           }
 
           button {
@@ -54,7 +58,7 @@
         }
 
         &.active {
-          background-color: #1dbf730f;
+          background-color: #1dbf7312;
         }
       }
     }

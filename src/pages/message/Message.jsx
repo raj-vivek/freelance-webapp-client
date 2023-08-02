@@ -1,71 +1,81 @@
 import React from "react";
 import "./Message.scss";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import newRequest from "../../utils/newRequest";
 
 const Message = () => {
+  const { id } = useParams();
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+  const queryClient = useQueryClient();
+
+  const { isLoading, data, error } = useQuery({
+    queryKey: ["messages"],
+    queryFn: () => {
+      return newRequest.get(`/messages/${id}`).then((res) => {
+        return res.data;
+      });
+    },
+  });
+
+  const mutation = useMutation({
+    mutationFn: (message) => {
+      return newRequest.post(`/messages`, message);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries(["messages"]);
+    },
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    mutation.mutate({
+      conversationId: id,
+      desc: e.target[0].value,
+    });
+    e.target[0].value = "";
+  };
+
   return (
     <div className="message">
-      <div className="container">
-        <div className="breadcrumbs">
-          <span className="breadcrumbs">
+      {isLoading ? (
+        "Loading"
+      ) : error ? (
+        "Something went wrong!"
+      ) : (
+        <div className="container">
+          <div className="breadcrumbs">
             <Link to="/messages">MESSAGES</Link> {">"} VIVEK RAJ
-          </span>
-          <div className="chat">
-            <div className="messageItem">
-              <img
-                src="https://img.fixthephoto.com/blog/images/gallery/news_preview_mob_image__preview_11368.png"
-                alt=""
-              />
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium esse facilis consequatur dolore, nemo voluptatibus quis odio cumque. Ad dolorem ipsam, reiciendis veritatis eum sapiente repudiandae voluptatem quibusdam sint minus!</p>
-            </div>
-            <div className="messageItem sender">
-              <img
-                src="https://img.fixthephoto.com/blog/images/gallery/news_preview_mob_image__preview_11368.png"
-                alt=""
-              />
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium esse facilis consequatur dolore, nemo voluptatibus quis odio cumque. Ad dolorem ipsam, reiciendis veritatis eum sapiente repudiandae voluptatem quibusdam sint minus!</p>
-            </div>
-            <div className="messageItem">
-              <img
-                src="https://img.fixthephoto.com/blog/images/gallery/news_preview_mob_image__preview_11368.png"
-                alt=""
-              />
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium esse facilis consequatur dolore, nemo voluptatibus quis odio cumque. Ad dolorem ipsam, reiciendis veritatis eum sapiente repudiandae voluptatem quibusdam sint minus!</p>
-            </div>
-            <div className="messageItem sender">
-              <img
-                src="https://img.fixthephoto.com/blog/images/gallery/news_preview_mob_image__preview_11368.png"
-                alt=""
-              />
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium esse facilis consequatur dolore, nemo voluptatibus quis odio cumque. Ad dolorem ipsam, reiciendis veritatis eum sapiente repudiandae voluptatem quibusdam sint minus!</p>
-            </div>
-            <div className="messageItem">
-              <img
-                src="https://img.fixthephoto.com/blog/images/gallery/news_preview_mob_image__preview_11368.png"
-                alt=""
-              />
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium esse facilis consequatur dolore, nemo voluptatibus quis odio cumque. Ad dolorem ipsam, reiciendis veritatis eum sapiente repudiandae voluptatem quibusdam sint minus!</p>
-            </div>
-            <div className="messageItem sender">
-              <img
-                src="https://img.fixthephoto.com/blog/images/gallery/news_preview_mob_image__preview_11368.png"
-                alt=""
-              />
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium esse facilis consequatur dolore, nemo voluptatibus quis odio cumque. Ad dolorem ipsam, reiciendis veritatis eum sapiente repudiandae voluptatem quibusdam sint minus!</p>
-            </div>
           </div>
-          <div className="write">
+          <div className="chat">
+            {data.map((message) => (
+              <div
+                className={
+                  message.userId == currentUser._id
+                    ? "messageItem owner"
+                    : "messageItem"
+                }
+                key={message._id}
+              >
+                <img
+                  src="https://img.fixthephoto.com/blog/images/gallery/news_preview_mob_image__preview_11368.png"
+                  alt=""
+                />
+                <p>{message.desc}</p>
+              </div>
+            ))}
+          </div>
+          <form className="write" onSubmit={handleSubmit}>
             <textarea
-              name=""
-              id=""
               placeholder="Write a message"
               cols="30"
               rows="10"
             ></textarea>
-            <button>Send</button>
-          </div>
+            <button type="submit">Send</button>
+          </form>
         </div>
-      </div>
+      )}
     </div>
   );
 };
