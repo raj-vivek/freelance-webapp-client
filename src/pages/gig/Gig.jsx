@@ -3,7 +3,7 @@ import "./Gig.scss";
 import Slide from "../../components/swiperSlider/Slide";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Reviews from "../../components/reviews/Reviews";
 
 const Gig = () => {
@@ -135,7 +135,7 @@ const Gig = () => {
                 </div>
               </div>
             )}
-            <Reviews gigId={id}/>
+            <Reviews gigId={id} />
           </div>
           <div className="right">
             <div className="box">
@@ -163,7 +163,9 @@ const Gig = () => {
                   </div>
                 ))}
               </div>
-              <button>Continue</button>
+              <Link to={`/pay/${id}`}>
+                <button>Continue</button>
+              </Link>
             </div>
           </div>
         </div>
