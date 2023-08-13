@@ -10,7 +10,13 @@ import "./Slide.scss";
 // register Swiper custom elements
 register();
 
-const Slide = ({ children, slidesPerView, slidesPerGroup, mousewheel }) => {
+const Slide = ({
+  children,
+  slidesPerView,
+  slidesPerGroup,
+  mousewheel,
+  title,
+}) => {
   const swiperRef = useRef(null);
 
   useEffect(() => {
@@ -54,6 +60,9 @@ const Slide = ({ children, slidesPerView, slidesPerGroup, mousewheel }) => {
   return (
     <div className="slide">
       <div className="container">
+        {title && <div className="title">
+          <h1>{title}</h1>
+        </div>}
         <div className="sliderContainer">
           <swiper-container ref={swiperRef} init="false">
             {children}

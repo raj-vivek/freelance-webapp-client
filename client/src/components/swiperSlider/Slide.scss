@@ -1,8 +1,15 @@
 .slide {
   display: flex;
   justify-content: center;
+  padding: 50px;
 
   .container {
     width: 1300px;
+
+    .title{
+      h1{
+        margin-left: 16px;
+      }
+    }
   }
 }
