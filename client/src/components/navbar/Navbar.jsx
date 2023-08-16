@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { PropTypes } from "prop-types";
+
 import "./Navbar.scss";
 import newRequest from "../../utils/newRequest";
 
-const Navbar = () => {
+const Navbar = ({ device }) => {
   // active is false when page is not scrolled, true when page is scrolled. We are changing the navbar styles for if it is scrolled or not.
   const [BGactive, setBGActive] = useState(false);
-  const [menuActive, setMenuActive] = useState(false);
+  // const [menuActive, setMenuActive] = useState(false);
 
   // open is true when user menu dropdown should be open, false when not open.
   const [open, setOpen] = useState(false);
@@ -15,8 +17,8 @@ const Navbar = () => {
   const pathName = location.pathname;
 
   const isActive = () => {
-    window.scrollY > 0 ? setBGActive(true) : setBGActive(false);
-    window.scrollY > 50 ? setMenuActive(true) : setMenuActive(false);
+    window.scrollY > 50 ? setBGActive(true) : setBGActive(false);
+    // window.scrollY > 50 ? setMenuActive(true) : setMenuActive(false);
   };
 
   useEffect(() => {
@@ -47,10 +49,16 @@ const Navbar = () => {
           </div>
         </Link>
         <div className="links">
-          <span>Fiverr Business</span>
-          <span>Explore</span>
-          <span>English</span>
-          {currentUser && !currentUser.isSeller && <span>Become a Seller</span>}
+          {(device == "laptop" || device == "desktop") && (
+            <>
+              <span>Fiverr Business</span>
+              <span>Explore</span>
+              <span>English</span>
+              {currentUser && !currentUser.isSeller && (
+                <span>Become a Seller</span>
+              )}
+            </>
+          )}
           {currentUser ? (
             <div
               className="user"
@@ -95,8 +103,8 @@ const Navbar = () => {
           )}
         </div>
       </div>
-      {(menuActive || pathName !== "/") && (
-        <>
+      {device == "laptop" && (
+        <div className="menuSection">
           <hr />
           <div className="menu">
             <Link className="link" to="/">
@@ -125,10 +133,14 @@ const Navbar = () => {
             </Link>
           </div>
           <hr />
-        </>
+        </div>
       )}
     </div>
   );
+};
+
+Navbar.propTypes = {
+  device: PropTypes.string,
 };
 
 export default Navbar;

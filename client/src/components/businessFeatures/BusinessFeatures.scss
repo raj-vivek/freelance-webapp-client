@@ -6,7 +6,8 @@
   color: white;
 
   .container {
-    width: 1200px;
+    width: 90%;
+    max-width: 1400px;
     display: flex;
 
     .left {
@@ -29,7 +30,6 @@
       }
 
       h1 {
-        width: 400px;
         i {
           font-size: 2.3rem;
           font-family: serif;

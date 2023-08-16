@@ -1,10 +1,17 @@
 import React from "react";
 import "./WebsiteFeatures.scss";
+import ProtTypes from "prop-types";
 
-const WebsiteFeatures = () => {
+const WebsiteFeatures = ({ device }) => {
   return (
     <div className="websiteFeatures">
-      <div className="container">
+      <div
+        className={
+          device == "desktop" || device == "laptop"
+            ? "container"
+            : "container smallScreen"
+        }
+      >
         <div className="left">
           <h2>A whole world of freelance talent at your fingertips</h2>
           <div className="features">
@@ -33,8 +40,8 @@ const WebsiteFeatures = () => {
               <h3>Protected payments, every time</h3>
             </div>
             <p>
-              Always know what you&apos;ll pay upfront. Your payment isn&apos;t released
-              until you approve the work.
+              Always know what you&apos;ll pay upfront. Your payment isn&apos;t
+              released until you approve the work.
             </p>
           </div>
           <div className="features">
@@ -57,6 +64,10 @@ const WebsiteFeatures = () => {
       </div>
     </div>
   );
+};
+
+WebsiteFeatures.propTypes = {
+  device: ProtTypes.string,
 };
 
 export default WebsiteFeatures;

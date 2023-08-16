@@ -2,8 +2,9 @@ import React from "react";
 import "./MarketPlace.scss";
 import { marketPlaceCards } from "../../data";
 import MarketPlaceCard from "../marketPlaceCard/MarketPlaceCard";
+import PropTypes from "prop-types";
 
-const MarketPlace = () => {
+const MarketPlace = ({ device }) => {
   return (
     <div className="marketPlace">
       <div className="container">
@@ -18,6 +19,10 @@ const MarketPlace = () => {
       </div>
     </div>
   );
+};
+
+MarketPlace.propTypes = {
+  device: PropTypes.string,
 };
 
 export default MarketPlace;

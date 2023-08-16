@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./Home.scss";
 import Featured from "../../components/featured/Featured";
 import TrustedBy from "../../components/trustedBy/TrustedBy";
@@ -11,28 +11,92 @@ import CategoryCard from "../../components/categoryCard/CategoryCard";
 import ProjectCard from "../../components/projectCard/ProjectCard";
 
 const Home = () => {
+  const checkScreenSize = (size) => {
+    if (size < 480) {
+      return "mobile";
+    } else if (size >= 480 && size < 767) {
+      return "tablet";
+    } else if (size >= 767 && size < 1024) {
+      return "tabletPortrait";
+    } else if (size >= 1024 && size < 1280) {
+      return "laptop";
+    } else {
+      return "desktop";
+    }
+  };
+
+  let device = useRef(checkScreenSize(window.innerWidth));
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      device = checkScreenSize(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
   return (
     <div className="home">
-      <Featured />
+      <Featured device={device.current} />
       <TrustedBy />
-      <Slide slidesPerView={5} slidesPerGroup={2} mousewheel={true} title={"Popular Services"}>
-        {cards.map((card) => (
-          <swiper-slide key={card.id}>
-            <CategoryCard card={card} />
-          </swiper-slide>
-        ))}
-      </Slide>
-      <WebsiteFeatures />
-      <MarketPlace />
-      <BusinessFeatures />
-      <Slide slidesPerView={4} slidesPerGroup={2} mousewheel={true} title={"Inspiring work made on Fiverr"}>
-        {projects.map((card) => (
-          <swiper-slide key={card.id}>
-            <ProjectCard card={card} />
-          </swiper-slide>
-        ))}
-        ;
-      </Slide>
+      <div className="popularServices">
+        <div className="homePageSliderContainer">
+          <Slide
+            slidesPerView={
+              device.current == "desktop"
+                ? 5
+                : device.current == "laptop"
+                ? 4
+                : device.current == "tabletPortrait"
+                ? 3
+                : device.current == "tablet"
+                ? 2
+                : 1
+            }
+            slidesPerGroup={device.current == "mobile" ? 1 : 2}
+            mousewheel={true}
+            title={"Popular Services"}
+          >
+            {cards.map((card) => (
+              <swiper-slide key={card.id}>
+                <CategoryCard card={card} />
+              </swiper-slide>
+            ))}
+          </Slide>
+        </div>
+      </div>
+      <WebsiteFeatures device={device.current} />
+      <MarketPlace device={device.current} />
+      <BusinessFeatures device={device.current} />
+      <div className="homePageGigSlider">
+        <div className="homePageSliderContainer">
+          <Slide
+            slidesPerView={
+              device.current == "desktop"
+                ? 4
+                : device.current == "laptop"
+                ? 3
+                : device.current == "tabletPortrait"
+                ? 2
+                : 1
+            }
+            slidesPerGroup={2}
+            mousewheel={true}
+            title={"Inspiring work made on Fiverr"}
+          >
+            {projects.map((card) => (
+              <swiper-slide key={card.id}>
+                <ProjectCard card={card} />
+              </swiper-slide>
+            ))}
+            ;
+          </Slide>
+        </div>
+      </div>
     </div>
   );
 };

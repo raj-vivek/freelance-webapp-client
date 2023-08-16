@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./Featured.scss";
 import { useNavigate } from "react-router-dom";
+import { PropTypes } from "prop-types";
 
-const Featured = () => {
+const Featured = ({ device }) => {
   const [input, setInput] = useState("");
 
   const navigate = useNavigate();
@@ -13,7 +14,13 @@ const Featured = () => {
   };
 
   return (
-    <div className="featured">
+    <div
+      className={
+        device == "desktop" || device == "laptop"
+          ? "featured"
+          : "featured tablet"
+      }
+    >
       <div className="container">
         <div className="left">
           <h1>
@@ -41,12 +48,18 @@ const Featured = () => {
             <button>AI Services</button>
           </div>
         </div>
-        <div className="right">
-          <img src="./img/man.png" alt="" />
-        </div>
+        {(device == "desktop" || device == "laptop") && (
+          <div className="right">
+            <img src="./img/man.png" alt="" />
+          </div>
+        )}
       </div>
     </div>
   );
+};
+
+Featured.propTypes = {
+  device: PropTypes.string,
 };
 
 export default Featured;

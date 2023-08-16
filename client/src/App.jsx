@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
@@ -18,15 +18,49 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Pay from "./pages/pay/Pay";
 import Success from "./pages/success/Success";
 
+// Mobile (Smartphone) max-width: 480px
+// Low Resolution Tablets and ipads max-width: 767px
+// Tablets Ipads portrait mode max-width:1024px
+// Desktops max-width:1280px
+// Huge size (Larger screen) max-width: 1281px and greater
+
 const App = () => {
   const queryClient = new QueryClient();
+
+  const checkScreenSize = (size) => {
+    if (size < 480) {
+      return "mobile";
+    } else if (size >= 480 && size < 767) {
+      return "tablet";
+    } else if (size >= 767 && size < 1024) {
+      return "tabletPortrait";
+    } else if (size >= 1024 && size < 1280) {
+      return "laptop";
+    } else {
+      return "desktop";
+    }
+  };
+
+  const [device, setDevice] = useState(checkScreenSize(window.innerWidth));
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setDevice(checkScreenSize(window.innerWidth));
+    };
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, [device]);
 
   const Layout = () => {
     return (
       <QueryClientProvider client={queryClient}>
         <div className="app">
-          <Navbar />
-          <Outlet />
+          <Navbar device={device} />
+          <Outlet device={device} />
           <Footer />
         </div>
       </QueryClientProvider>

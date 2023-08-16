@@ -8,17 +8,18 @@
 
   margin: 70px 0;
   .container {
-    width: 1200px;
+    width: 80%;
+    max-width: 1400px;
 
     .row {
-        display: flex;
-        flex-wrap: wrap;
-        margin-top: 40px;
-        padding: 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 40px;
+      padding: 0 20px;
 
-        .column{
-            flex: 16%;
-        }
+      .column {
+        flex: 16%;
+      }
     }
   }
 }

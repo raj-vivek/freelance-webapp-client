@@ -5,7 +5,7 @@ body {
 .navbar {
   display: flex;
   flex-direction: column;
-  // justify-content: center; //align in the direction of flex
+  justify-content: center; //align in the direction of flex
   align-items: center; // align in the direction that is 90 degrees to the direction of flex
   font-family: "Montserrat", sans-serif;
   background-color: #013914;
@@ -25,16 +25,24 @@ body {
         color: black;
       }
     }
+
+    .menuSection {
+      max-height: 45px;
+      overflow: auto;
+    }
   }
 
   .container {
-    width: 1200px;
+    width: 80%;
+    max-width: 1400px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 10px 0px;
+    height: 11vh;
 
     .logo {
-      font-size: 34px;
+      font-size: 2rem;
       font-weight: bold;
       padding: 10px 0;
 
@@ -109,26 +117,42 @@ body {
     }
   }
 
-  hr {
+  .menuSection {
     width: 100%;
-    height: 0;
-    border: 0.1px solid lightgray;
-    margin: 0;
-  }
-
-  .menu {
-    width: 1200px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-between;
-    font-weight: 300;
-    color: gray;
 
-    .link {
-      padding: 8px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease-out;
 
-      &:hover {
-        color: rgb(34, 34, 34);
-        background-color: lightgray;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    hr {
+      width: 100%;
+      height: 0;
+      border: 0.1px solid lightgray;
+      margin: 0;
+    }
+
+    .menu {
+      width: 80%;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 300;
+      color: gray;
+
+      .link {
+        padding: 8px 0;
+
+        &:hover {
+          color: rgb(34, 34, 34);
+          background-color: lightgray;
+        }
       }
     }
   }

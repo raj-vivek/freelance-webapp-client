@@ -11,20 +11,22 @@ hr {
   padding: 40px 0;
 
   .container {
-    width: 1200px;
+    width: 90%;
+    max-width: 1400px;
     display: flex;
     flex-direction: column;
 
     .top {
       display: flex;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 5%;
       margin-bottom: 15px;
 
       .item {
         display: flex;
         flex-direction: column;
         gap: 15px;
-
         h4{
             color: #545454;
             margin: 15px 0;
