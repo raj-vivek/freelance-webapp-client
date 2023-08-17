@@ -59,7 +59,7 @@ const Gigs = () => {
         </span>
         <h1>AI Artists</h1>
         <p>
-          Explore the boundaries of art and technology with Fiverr{"'"}s AI
+          Explore the boundaries of art and technology with Fiwerr{"'"}s AI
           artists
         </p>
         <div className="filters">

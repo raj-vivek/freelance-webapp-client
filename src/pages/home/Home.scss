@@ -1,18 +1,21 @@
 .home {
   .homePageSliderContainer {
-    width: 100%;
+    width: 80%;
     max-width: 1400px;
 
     display: flex;
     flex-direction: column;
   }
+  
   .popularServices {
     display: flex;
     justify-content: center;
+    padding: 60px 0;
   }
 
   .homePageGigSlider {
     display: flex;
     justify-content: center;
+    padding: 60px 0;
   }
 }

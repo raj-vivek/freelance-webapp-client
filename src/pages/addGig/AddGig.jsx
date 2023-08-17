@@ -1,9 +1,9 @@
-import React, { useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import "./AddGig.scss";
 import { INITIAL_STATE, gigReducer } from "../../reducers/gigReducer";
 import upload from "../../utils/upload";
 import { useNavigate } from "react-router-dom";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 
 const AddGig = () => {
@@ -65,8 +65,22 @@ const AddGig = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     mutation.mutate(state);
-    navigate("/mygigs");
+    // navigate("/mygigs");
   };
+
+  const { isLoading, data, error, isSuccess } = useQuery({
+    queryKey: ["categories"],
+    queryFn: () => newRequest.get("categories").then((res) => res.data),
+  });
+
+  useEffect(() => {
+    dispatch({
+      type: "ADD_USERID",
+      payload: {
+        userId: JSON.parse(localStorage?.getItem("currentUser"))?._id,
+      },
+    });
+  }, []);
 
   return (
     <div className="addGig">
@@ -83,10 +97,18 @@ const AddGig = () => {
             />
             <label htmlFor="">Category</label>
             <select name="cat" id="cat" onChange={handleChange}>
-              <option value="design">Design</option>
-              <option value="web">Web Development</option>
-              <option value="animation">Animation</option>
-              <option value="music">Music</option>
+              {isSuccess && <option>Choose an option...</option>}
+              {isLoading ? (
+                <option>Loading...</option>
+              ) : error ? (
+                <option>Something went wrong</option>
+              ) : (
+                data.map((cat) => (
+                  <option value={cat.value} key={cat._id}>
+                    {cat.name}
+                  </option>
+                ))
+              )}
             </select>
 
             <div className="images">

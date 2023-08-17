@@ -18,6 +18,8 @@ const MyGigs = () => {
     },
   });
 
+  console.log(data);
+
   const mutation = useMutation({
     mutationFn: (id) => {
       return newRequest.delete(`/gigs/${id}`);

@@ -75,6 +75,9 @@ const Gig = () => {
               </div>
             )}
             <Slide slidesPerView={1} slidesPerGroup={1}>
+              <swiper-slide>
+                <img className="sliderImg" src={data.cover} alt="" />
+              </swiper-slide>
               {data.images.map((img) => (
                 <swiper-slide key={img}>
                   <img className="sliderImg" src={img} alt="" />

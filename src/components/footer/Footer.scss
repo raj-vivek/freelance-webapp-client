@@ -11,8 +11,6 @@ hr {
   padding: 40px 0;
 
   .container {
-    width: 90%;
-    max-width: 1400px;
     display: flex;
     flex-direction: column;
 
@@ -50,6 +48,7 @@ hr {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
 
       .left {
         display: flex;

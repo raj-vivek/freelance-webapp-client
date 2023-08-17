@@ -7,7 +7,7 @@ import newRequest from "../../utils/newRequest";
 
 const GigCard = ({ item }) => {
   const { isLoading, error, data } = useQuery({
-    queryKey: ["gigUser"],
+    queryKey: ["gigUser", item.userId],
     queryFn: () => {
       return newRequest.get(`/users/${item.userId}`).then((res) => {
         return res.data;
@@ -30,7 +30,7 @@ const GigCard = ({ item }) => {
               <span>{data.username}</span>
             </div>
           )}
-          <p>{item.desc}</p>
+          <p>{item.desc.length > 100 ? item.desc.slice(0, 100) + "...": item.desc}</p>
           <div className="ratings">
             <img src="./img/star.png" alt="" />
             <span>

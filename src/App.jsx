@@ -60,8 +60,8 @@ const App = () => {
       <QueryClientProvider client={queryClient}>
         <div className="app">
           <Navbar device={device} />
-          <Outlet device={device} />
-          <Footer />
+          <Outlet context={[device]} />
+          <Footer device={device} />
         </div>
       </QueryClientProvider>
     );

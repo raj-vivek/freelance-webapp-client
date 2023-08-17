@@ -8,7 +8,7 @@ const BusinessFeatures = ({ device }) => {
       <div className="container">
         <div className="left">
           <div className="semi-heading">
-            <h2>fiverr business.</h2>
+            <h2>fiwerr business.</h2>
             <p>NEW</p>
           </div>
           <h1>
@@ -40,7 +40,7 @@ const BusinessFeatures = ({ device }) => {
               Manage teamwork and boost productivity with one powerful workspace
             </p>
           </div>
-          <button>Explore Fiverr Business</button>
+          <button>Explore Fiwerr Business</button>
         </div>
         {(device == "desktop" || device == "laptop") && (
           <div className="right">

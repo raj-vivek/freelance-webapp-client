@@ -1,11 +1,13 @@
 .login {
   margin: 150px 0 200px 0;
+  display: flex;
+  justify-content: center;
   .container {
     display: flex;
     justify-content: center;
 
     form {
-      width: 400px;
+      min-width: 350px;
       display: flex;
       flex-direction: column;
       gap: 10px;

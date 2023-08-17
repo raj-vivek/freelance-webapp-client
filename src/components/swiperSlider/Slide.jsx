@@ -59,10 +59,12 @@ const Slide = ({
 
   return (
     <div className="slide">
-      <div className="container">
-        {title && <div className="title">
-          <h1>{title}</h1>
-        </div>}
+      <div className="slideContainer">
+        {title && (
+          <div className="title">
+            <h1>{title}</h1>
+          </div>
+        )}
         <div className="sliderContainer">
           <swiper-container ref={swiperRef} init="false">
             {children}

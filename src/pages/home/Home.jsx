@@ -1,92 +1,83 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import "./Home.scss";
 import Featured from "../../components/featured/Featured";
 import TrustedBy from "../../components/trustedBy/TrustedBy";
 import Slide from "../../components/swiperSlider/Slide";
-import { cards, projects } from "../../data";
+import { projects } from "../../data";
 import WebsiteFeatures from "../../components/websiteFeatures/WebsiteFeatures";
 import MarketPlace from "../../components/marketPlace/MarketPlace";
 import BusinessFeatures from "../../components/businessFeatures/BusinessFeatures";
 import CategoryCard from "../../components/categoryCard/CategoryCard";
 import ProjectCard from "../../components/projectCard/ProjectCard";
+import { useQuery } from "@tanstack/react-query";
+import newRequest from "../../utils/newRequest";
+import { useOutletContext } from "react-router-dom";
 
 const Home = () => {
-  const checkScreenSize = (size) => {
-    if (size < 480) {
-      return "mobile";
-    } else if (size >= 480 && size < 767) {
-      return "tablet";
-    } else if (size >= 767 && size < 1024) {
-      return "tabletPortrait";
-    } else if (size >= 1024 && size < 1280) {
-      return "laptop";
-    } else {
-      return "desktop";
-    }
-  };
+  const [device] = useOutletContext();
 
-  let device = useRef(checkScreenSize(window.innerWidth));
+  const { isLoading, data, error } = useQuery({
+    queryKey: ["categories"],
+    queryFn: () => newRequest.get("categories").then((res) => res.data),
+  });
 
-  useEffect(() => {
-    const handleWindowResize = () => {
-      device = checkScreenSize(window.innerWidth);
-    };
-
-    window.addEventListener("resize", handleWindowResize);
-
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
-  }, []);
+  console.log(device);
 
   return (
     <div className="home">
-      <Featured device={device.current} />
+      <Featured device={device} />
       <TrustedBy />
       <div className="popularServices">
-        <div className="homePageSliderContainer">
-          <Slide
-            slidesPerView={
-              device.current == "desktop"
-                ? 5
-                : device.current == "laptop"
-                ? 4
-                : device.current == "tabletPortrait"
-                ? 3
-                : device.current == "tablet"
-                ? 2
-                : 1
-            }
-            slidesPerGroup={device.current == "mobile" ? 1 : 2}
-            mousewheel={true}
-            title={"Popular Services"}
-          >
-            {cards.map((card) => (
-              <swiper-slide key={card.id}>
-                <CategoryCard card={card} />
-              </swiper-slide>
-            ))}
-          </Slide>
-        </div>
+        {isLoading ? (
+          "Loading"
+        ) : error ? (
+          "Something went wrong"
+        ) : (
+          <div className="homePageSliderContainer">
+            <Slide
+              device={device}
+              slidesPerView={
+                device == "desktop"
+                  ? 5
+                  : device == "laptop"
+                  ? 4
+                  : device == "tabletPortrait"
+                  ? 3
+                  : device == "tablet"
+                  ? 2
+                  : 1
+              }
+              slidesPerGroup={device == "mobile" ? 1 : 2}
+              mousewheel={true}
+              title={"Popular Services"}
+            >
+              {data.map((cat) => (
+                <swiper-slide key={cat._id}>
+                  <CategoryCard cat={cat} />
+                </swiper-slide>
+              ))}
+            </Slide>
+          </div>
+        )}
       </div>
-      <WebsiteFeatures device={device.current} />
-      <MarketPlace device={device.current} />
-      <BusinessFeatures device={device.current} />
+      <WebsiteFeatures device={device} />
+      <MarketPlace device={device} />
+      <BusinessFeatures device={device} />
       <div className="homePageGigSlider">
         <div className="homePageSliderContainer">
           <Slide
             slidesPerView={
-              device.current == "desktop"
+              device == "desktop"
                 ? 4
-                : device.current == "laptop"
+                : device == "laptop"
                 ? 3
-                : device.current == "tabletPortrait"
+                : device == "tabletPortrait"
                 ? 2
                 : 1
             }
             slidesPerGroup={2}
             mousewheel={true}
-            title={"Inspiring work made on Fiverr"}
+            title={"Inspiring work made on Fiwerr"}
           >
             {projects.map((card) => (
               <swiper-slide key={card.id}>
