@@ -2,14 +2,17 @@ import React, { useEffect, useReducer, useState } from "react";
 import "./AddGig.scss";
 import { INITIAL_STATE, gigReducer } from "../../reducers/gigReducer";
 import upload from "../../utils/upload";
-import { useNavigate } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 const AddGig = () => {
   const [singlefile, setSingleFile] = useState(undefined);
   const [files, setFiles] = useState([]);
   const [uploading, setUploading] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+
+  const [device] = useOutletContext();
 
   const [state, dispatch] = useReducer(gigReducer, INITIAL_STATE);
 
@@ -48,8 +51,6 @@ const AddGig = () => {
     }
   };
 
-  console.log(state);
-
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -64,8 +65,22 @@ const AddGig = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    for (const key in state) {
+      if (
+        (typeof state[key] == "string" && state[key] == "") ||
+        (typeof state[key] == "number" && state[key] == 0) ||
+        (Array.isArray(state[key]) && state[key].length == 0)
+      ) {
+        setSubmitError(
+          "Some fields are missing data. Please fill the missing details."
+        );
+        return;
+      }
+    }
+
     mutation.mutate(state);
-    // navigate("/mygigs");
+    navigate("/mygigs");
   };
 
   const { isLoading, data, error, isSuccess } = useQuery({
@@ -86,7 +101,7 @@ const AddGig = () => {
     <div className="addGig">
       <div className="container">
         <h1>Add New Gig</h1>
-        <div className="sections">
+        <div className={`sections ${device}`}>
           <div className="left">
             <label htmlFor="">Title</label>
             <input
@@ -143,6 +158,7 @@ const AddGig = () => {
               onChange={handleChange}
             ></textarea>
             <button onClick={handleSubmit}>Create</button>
+            <div className="error">{submitError}</div>
           </div>
           <div className="right">
             <label htmlFor="">Service Title</label>

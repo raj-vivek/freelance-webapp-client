@@ -13,8 +13,11 @@ const Register = () => {
     img: "",
     country: "",
     isSeller: false,
+    phone: "",
     desc: "",
   });
+
+  const [error, setError] = useState("");
 
   const navigate = useNavigate();
 
@@ -28,6 +31,28 @@ const Register = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (
+      user.username == "" ||
+      user.email == "" ||
+      user.password == "" ||
+      user.country == ""
+    ) {
+      setError("Some fields are missing data. Please fill before submitting.");
+      return;
+    }
+
+    if (file == null) {
+      setError("Please upload a Profile Picture");
+      return;
+    }
+
+    if (user.isSeller && (user.phone == "" || user.desc == "")) {
+      setError(
+        "Some seller fields are missing data. Please fill before submitting."
+      );
+      return;
+    }
 
     try {
       const url = await upload(file);
@@ -51,6 +76,7 @@ const Register = () => {
             name="username"
             type="text"
             placeholder="johndoe"
+            onFocus={() => setError("")}
             onChange={handleChange}
           />
           <label>Email</label>
@@ -72,6 +98,7 @@ const Register = () => {
             onChange={handleChange}
           />
           <button type="submit">Register</button>
+          <div className="error">{error && error}</div>
         </div>
         <div className="right">
           <h1>I want to become a seller</h1>

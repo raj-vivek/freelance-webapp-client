@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import "./Reviews.scss";
 import Review from "../review/Review";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -17,6 +17,8 @@ const Reviews = ({ gigId }) => {
     },
   });
 
+  const [newReviewError, setNewReviewError] = useState("");
+
   const [newReview, setNewReview] = useState({
     desc: "",
     star: 5,
@@ -33,8 +35,14 @@ const Reviews = ({ gigId }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    if (newReview.desc == "") {
+      setNewReviewError("No review text entered.");
+      return;
+    }
     mutation.mutate({ ...newReview, gigId });
   };
+
+  console.log(newReviewError);
 
   return (
     <div className="reviews">
@@ -46,10 +54,14 @@ const Reviews = ({ gigId }) => {
         : data.map((review) => <Review key={review._id} data={review} />)}
       <div className="addReview">
         <h3>Add a review</h3>
+        <div className="reviewError">{newReviewError}</div>
         <form onSubmit={handleSubmit}>
           <textarea
             placeholder="Write your review"
             value={newReview.desc}
+            onFocus={() => {
+              setNewReviewError("");
+            }}
             onChange={(e) =>
               setNewReview({ ...newReview, desc: e.target.value })
             }

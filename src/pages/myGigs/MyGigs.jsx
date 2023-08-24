@@ -1,10 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import "./MyGigs.scss";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 
 const MyGigs = () => {
+  const [device] = useOutletContext();
+  console.log(device);
+
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   const queryClient = useQueryClient();
@@ -18,7 +21,7 @@ const MyGigs = () => {
     },
   });
 
-  console.log(data);
+  // console.log(data);
 
   const mutation = useMutation({
     mutationFn: (id) => {
@@ -48,35 +51,53 @@ const MyGigs = () => {
             </Link>
           </div>
           <table>
-            <tr>
-              <th>Image</th>
-              <th>Title</th>
-              <th>Price</th>
-              <th>Sales</th>
-              <th>Action</th>
-            </tr>
-            {data.map((gig) => (
-              <tr key={gig._id}>
-                <td>
-                  <img className="gigImg" src={gig.cover} alt="" />
-                </td>
-                <td>
-                  <Link to={`/gig/${gig._id}`} className="link">
-                    {gig.title}
-                  </Link>
-                </td>
-                <td>{gig.price}</td>
-                <td>{gig.sales}</td>
-                <td>
-                  <img
-                    className="deleteImg"
-                    src="/img/delete.png"
-                    alt=""
-                    onClick={() => handleDelete(gig.id)}
-                  />
-                </td>
+            <thead>
+              <tr>
+                {(device == "desktop" ||
+                  device == "laptop" ||
+                  device == "tabletPortrait") && <th>Image</th>}
+                <th>Title</th>
+                {(device == "desktop" ||
+                  device == "laptop" ||
+                  device == "tabletPortrait") && <th>Price</th>}
+                <th>Sales</th>
+                <th>Action</th>
               </tr>
-            ))}
+            </thead>
+            <tbody>
+              {data.map((gig) => (
+                <tr key={gig._id}>
+                  {(device == "desktop" ||
+                    device == "laptop" ||
+                    device == "tabletPortrait") && (
+                    <td>
+                      <img className="gigImg" src={gig.cover} alt="" />
+                    </td>
+                  )}
+                  <td>
+                    <Link to={`/gig/${gig._id}`} className="link">
+                      {device == "desktop" ||
+                      device == "laptop" ||
+                      device == "tabletPortrait"
+                        ? gig.title
+                        : `${gig.title.slice(0, 23)}...`}
+                    </Link>
+                  </td>
+                  {(device == "desktop" ||
+                    device == "laptop" ||
+                    device == "tabletPortrait") && <td>{gig.price}</td>}
+                  {<td>{gig.sales}</td>}
+                  <td>
+                    <img
+                      className="deleteImg"
+                      src="/img/delete.png"
+                      alt=""
+                      onClick={() => handleDelete(gig.id)}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </div>
       )}

@@ -3,7 +3,7 @@ import "./Gigs.scss";
 import GigCard from "../../components/gigCard/GigCard";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
-import { useLocation } from "react-router-dom";
+import { useLocation, useOutletContext } from "react-router-dom";
 
 const Gigs = () => {
   // sales = Best Seller
@@ -14,6 +14,8 @@ const Gigs = () => {
   const [sortMenuOpen, setSortMenuOpen] = useState(false);
   const minRef = useRef();
   const maxRef = useRef();
+
+  const [device] = useOutletContext();
 
   const { search } = useLocation();
   const { isLoading, error, data, refetch } = useQuery({
@@ -30,6 +32,15 @@ const Gigs = () => {
         }),
   });
 
+  const {
+    isLoading: catIsLoading,
+    data: catData,
+    error: catError,
+  } = useQuery({
+    queryKey: ["categories"],
+    queryFn: () => newRequest.get("categories").then((res) => res.data),
+  });
+
   const reSort = (type) => {
     setSortType(type);
     setSortMenuOpen(false);
@@ -41,7 +52,7 @@ const Gigs = () => {
 
   useEffect(() => {
     refetch();
-  }, [sortType]);
+  }, [sortType, search]);
 
   const toggleSortMenu = () => {
     if (sortMenuOpen) {
@@ -54,15 +65,40 @@ const Gigs = () => {
   return (
     <div className="gigs">
       <div className="container">
-        <span className="breadcrumbs">
-          FIVERR {">"} GRAPHICS & DESINGN {">"}{" "}
-        </span>
-        <h1>AI Artists</h1>
-        <p>
-          Explore the boundaries of art and technology with Fiwerr{"'"}s AI
-          artists
-        </p>
-        <div className="filters">
+        {catIsLoading ? (
+          "Loading"
+        ) : catError ? (
+          "Something went wrong"
+        ) : (
+          <>
+            <span className="breadcrumbs">
+              FIVERR {">"}{" "}
+              {search.includes("cat")
+                ? catData
+                    .filter((cat) => cat.value == search.split("cat=")[1])[0]
+                    ?.name.toUpperCase()
+                : "Fiwerr Services"}{" "}
+              {">"}{" "}
+            </span>
+            <h1>
+              {search.includes("cat")
+                ? catData.filter(
+                    (cat) => cat.value == search.split("cat=")[1]
+                  )[0]?.name
+                : "Fiwerr Services"}
+            </h1>
+            <p>
+              Explore the boundaries of art and technology with{" "}
+              {search.includes("cat")
+                ? catData
+                    .filter((cat) => cat.value == search.split("cat=")[1])[0]
+                    ?.name.toLowerCase()
+                : "Fiwerr's"}{" "}
+              solutions
+            </p>
+          </>
+        )}
+        <div className={`filters ${device}`}>
           <div className="left">
             <span>Budget:</span>
             <input ref={minRef} type="text" placeholder="min" />
@@ -89,7 +125,7 @@ const Gigs = () => {
             )}
           </div>
         </div>
-        <div className="row">
+        <div className={`row ${device}`}>
           {isLoading
             ? "loading"
             : error

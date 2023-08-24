@@ -1,5 +1,9 @@
 .reviews {
   .addReview {
+    .reviewError{
+      color: red;
+      margin: 10px 0;
+    }
     form {
       textarea {
         height: 100px;

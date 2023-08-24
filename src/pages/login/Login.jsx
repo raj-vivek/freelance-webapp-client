@@ -13,6 +13,10 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault(); //To not submit page
 
+    if (username == "" || password == "") {
+      setError("Enter username and/or password");
+      return;
+    }
     try {
       const res = await newRequest.post("auth/login", { username, password });
       //Storing user data in local storage to use it at different pages/components like navbar
@@ -32,16 +36,18 @@ const Login = () => {
           <input
             type="text"
             name="username"
+            onFocus={() => setError("")}
             onChange={(event) => setUsername(event.target.value)}
           />
           <label htmlFor="">Password</label>
           <input
             type="text"
             name="password"
+            onFocus={() => setError("")}
             onChange={(event) => setPassword(event.target.value)}
           />
           <button type="submit">Login</button>
-          {error || error}
+          <div className="error">{error && error}</div>
         </form>
       </div>
     </div>

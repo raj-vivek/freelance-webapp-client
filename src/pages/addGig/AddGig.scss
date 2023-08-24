@@ -4,7 +4,6 @@
   justify-content: center;
   margin: 30px 0 100px 0;
   .container {
-
     h1 {
       color: rgb(110, 110, 110);
     }
@@ -27,7 +26,12 @@
 
     .sections {
       display: flex;
-      gap: 70px;
+      gap: 5%;
+
+      &.tablet, &.mobile{
+        flex-direction: column-reverse;
+      }
+
       .left {
         flex: 1;
         display: flex;
@@ -47,6 +51,9 @@
             width: 120px;
           }
         }
+        .error {
+          color: red;
+        }
       }
 
       .right {
@@ -59,7 +66,7 @@
           justify-content: space-between;
           padding: 10px 0;
 
-          gap: 20px;
+          gap: 15px;
 
           input {
             width: 100%;
@@ -67,6 +74,7 @@
 
           button {
             margin: 0;
+            padding: 0 15px;
             height: 45px;
           }
         }

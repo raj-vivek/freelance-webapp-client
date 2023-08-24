@@ -1,9 +1,8 @@
 .gigs {
   display: flex;
   justify-content: center;
-  margin: 40px;
+  margin: 40px 0;
   .container {
-
     .breadcrumbs {
       font-size: 0.85rem;
       color: rgb(111, 111, 111);
@@ -21,11 +20,18 @@
     .filters {
       display: flex;
       justify-content: space-between;
+      
+      &.tablet, &.mobile{
+        flex-direction: column;
+        gap: 20px;
+      }
 
       .left {
         display: flex;
         align-items: center;
         gap: 10px;
+        width: 50%;
+        min-width: 350px;
         span {
           color: #555555;
         }
@@ -35,6 +41,7 @@
           border: 1px solid gray;
           border-radius: 5px;
           outline: none;
+          width: 40%;
 
           &::placeholder {
             color: grey;
@@ -106,16 +113,37 @@
       }
     }
 
-    .row{
+    .row {
       margin: 30px 0;
       display: flex;
       flex-wrap: wrap;
+      gap: 10%;
 
-      .col{
+      .col {
         max-width: 25%;
         flex: 25%;
         display: flex;
         justify-content: center;
+      }
+
+      &.laptop {
+        .col {
+          max-width: 33%;
+          flex: 33%;
+        }
+      }
+      &.tabletPortrait,
+      &.tablet {
+        .col {
+          max-width: 50%;
+          flex: 50%;
+        }
+      }
+      &.mobile {
+        .col {
+          max-width: 100%;
+          flex: 100%;
+        }
       }
     }
   }

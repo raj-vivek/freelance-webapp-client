@@ -124,7 +124,11 @@ const Navbar = () => {
                 Sign in
               </Link>
               <Link className="link" to="/register">
-                <button className={BGactive ? "bgactive" : ""}>Join</button>
+                <button
+                  className={BGactive || pathName !== "/" ? "bgactive" : ""}
+                >
+                  Join
+                </button>
               </Link>
             </>
           )}

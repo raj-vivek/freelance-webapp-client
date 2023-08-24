@@ -21,7 +21,7 @@ const Home = () => {
     queryFn: () => newRequest.get("categories").then((res) => res.data),
   });
 
-  console.log(device);
+  // console.log(device);
 
   return (
     <div className="home">
