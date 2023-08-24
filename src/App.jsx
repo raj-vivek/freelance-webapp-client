@@ -17,6 +17,7 @@ import "./App.scss";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Pay from "./pages/pay/Pay";
 import Success from "./pages/success/Success";
+import ScrollToTop from "./utils/scrollToTop";
 
 // Mobile (Smartphone) max-width: 480px
 // Low Resolution Tablets and ipads max-width: 767px
@@ -58,6 +59,7 @@ const App = () => {
   const Layout = () => {
     return (
       <QueryClientProvider client={queryClient}>
+        <ScrollToTop />
         <div className="app">
           <Navbar device={device} />
           <Outlet context={[device]} />

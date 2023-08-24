@@ -42,10 +42,34 @@ const Featured = ({ device }) => {
           </form>
           <div className="popular">
             <span>Popular:</span>
-            <button>Web Design</button>
-            <button>Wordpress</button>
-            <button>Logo Design</button>
-            <button>AI Services</button>
+            <button
+              onClick={() => {
+                navigate(`/gigs?cat=web`);
+              }}
+            >
+              Web Design
+            </button>
+            <button
+              onClick={() => {
+                navigate(`/gigs?cat=design`);
+              }}
+            >
+              Graphic Design
+            </button>
+            <button
+              onClick={() => {
+                navigate(`/gigs?cat=logo`);
+              }}
+            >
+              Logo Design
+            </button>
+            <button
+              onClick={() => {
+                navigate(`/gigs?cat=ai`);
+              }}
+            >
+              AI Services
+            </button>
           </div>
         </div>
         {(device == "desktop" || device == "laptop") && (

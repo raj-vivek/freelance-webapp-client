@@ -41,7 +41,7 @@ const Login = () => {
           />
           <label htmlFor="">Password</label>
           <input
-            type="text"
+            type="password"
             name="password"
             onFocus={() => setError("")}
             onChange={(event) => setPassword(event.target.value)}
