@@ -5,8 +5,8 @@ body {
 .navbar {
   display: flex;
   flex-direction: column;
-  justify-content: center; //align in the direction of flex
-  align-items: center; // align in the direction that is 90 degrees to the direction of flex
+  justify-content: center; 
+  align-items: center; 
   font-family: "Montserrat", sans-serif;
   background-color: #013914;
   color: white;
@@ -38,6 +38,7 @@ body {
     align-items: center;
     padding: 10px 0px;
     height: 11vh;
+    min-height: 80px;
 
     .logo {
       font-size: 2rem;

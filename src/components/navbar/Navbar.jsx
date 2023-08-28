@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Navbar.scss";
 import newRequest from "../../utils/newRequest";
 import { useQuery } from "@tanstack/react-query";
+import logout from "../../utils/logout";
 
 const Navbar = () => {
   // active is false when page is not scrolled, true when page is scrolled. We are changing the navbar styles for if it is scrolled or not.
@@ -56,9 +57,8 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const handleLogout = async () => {
-    await newRequest.post("auth/logout");
-    localStorage.setItem("currentUser", null);
-    navigate("/");
+    await logout();
+    navigate("/login");
   };
 
   const { isLoading, data, error } = useQuery({

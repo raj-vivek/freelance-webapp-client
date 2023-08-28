@@ -21,8 +21,6 @@ const Home = () => {
     queryFn: () => newRequest.get("categories").then((res) => res.data),
   });
 
-  // console.log(device);
-
   return (
     <div className="home">
       <Featured device={device} />

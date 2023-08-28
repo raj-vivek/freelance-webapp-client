@@ -6,7 +6,6 @@ import newRequest from "../../utils/newRequest";
 import { Link } from "react-router-dom";
 
 const Footer = ({ device }) => {
-
   const { isLoading, data, error } = useQuery({
     queryKey: ["categories"],
     queryFn: () => newRequest.get("categories").then((res) => res.data),
@@ -27,7 +26,9 @@ const Footer = ({ device }) => {
               ) : (
                 data.map((item) => (
                   <span key={item._id}>
-                    <Link className="link" to={`/gigs?cat=${item.value}`}>{item.name}</Link>
+                    <Link className="link" to={`/gigs?cat=${item.value}`}>
+                      {item.name}
+                    </Link>
                   </span>
                 ))
               )}
@@ -91,15 +92,17 @@ const Footer = ({ device }) => {
                 <img src="./img/pinterest.png" alt="" />
                 <img src="./img/instagram.png" alt="" />
               </div>
-              <div className="link">
-                <img src="./img/language.png" alt="" />
-                <span>English</span>
+              <div className="info">
+                <div className="link">
+                  <img src="./img/language.png" alt="" />
+                  <span>English</span>
+                </div>
+                <div className="link">
+                  <img src="./img/coin.png" alt="" />
+                  <span>INR</span>
+                </div>
+                <img src="./img/accessibility.png" alt="" />
               </div>
-              <div className="link">
-                <img src="./img/coin.png" alt="" />
-                <span>INR</span>
-              </div>
-              <img src="./img/accessibility.png" alt="" />
             </div>
           </div>
         </div>

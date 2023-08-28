@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 
+// Conversation
 const Message = () => {
   const { id } = useParams();
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -12,10 +13,14 @@ const Message = () => {
 
   const { isLoading, data, error } = useQuery({
     queryKey: ["messages"],
-    queryFn: () => {
-      return newRequest.get(`/messages/${id}`).then((res) => {
-        return res.data;
-      });
+    queryFn: async () => {
+      const messages = (await newRequest.get(`/messages/${id}`)).data;
+      for (const key in messages) {
+        messages[key].userImg = await newRequest.get(
+          `/users/${messages[key].userId}`
+        ).then(res => res.data.img);
+      }
+      return messages;
     },
   });
 
@@ -30,6 +35,9 @@ const Message = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (e.target[0].value == "") {
+      return;
+    }
     mutation.mutate({
       conversationId: id,
       desc: e.target[0].value,
@@ -59,7 +67,7 @@ const Message = () => {
                 key={message._id}
               >
                 <img
-                  src="https://img.fixthephoto.com/blog/images/gallery/news_preview_mob_image__preview_11368.png"
+                  src={message.userImg}
                   alt=""
                 />
                 <p>{message.desc}</p>

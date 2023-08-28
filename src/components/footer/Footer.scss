@@ -87,6 +87,7 @@ hr {
           gap: 10%;
           margin-right: 10px;
           width: fit-content;
+          min-width: 170px;
           width: 40%;
 
           img {
@@ -94,16 +95,24 @@ hr {
           }
         }
 
-        .link {
+        .info {
           display: flex;
           align-items: center;
-          gap: 5px;
-          img {
-            height: 15px;
-          }
-          span {
-            font-size: 0.8rem;
-            color: gray;
+          gap: 10px;
+
+          .link {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            img {
+              height: 15px;
+            }
+
+            span {
+              font-size: 0.8rem;
+              color: gray;
+            }
           }
         }
 
@@ -143,7 +152,7 @@ hr {
           flex: 100%;
           justify-content: center;
         }
-        .right{
+        .right {
           flex: 100%;
           justify-content: center;
           margin-top: 10px;
@@ -165,12 +174,17 @@ hr {
         width: 80%;
         .left {
           flex: 100%;
+          display: flex;
           justify-content: center;
         }
-        .right{
+        .right {
           flex: 100%;
+          display: flex;
           justify-content: center;
           margin-top: 10px;
+          flex-direction: column;
+          align-items: center;
+          gap: 10px;
         }
       }
     }

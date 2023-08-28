@@ -1,47 +1,51 @@
 .orders {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 
-    .container {
-      margin: 30px 0;
-      .title {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        
-        h1{
-            margin: 0;
-        }
+  .container {
+    margin: 30px 0;
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      h1 {
+        margin: 10px 0 15px 0;
       }
-  
-      table {
-        width: 100%;
-        tr {
-          height: 50px;
-  
-          th {
-            text-align: left;
+    }
+
+    table {
+      width: 100%;
+      tr {
+        height: 70px;
+        background-color: #0e0e0e0f;
+
+        th {
+          text-align: left;
+          min-width: 5.5rem;
+          padding: 0 2%;
+          background-color: #0e0e0e20;
+        }
+
+        td {
+          padding: 0 2%;
+
+          .gigImg {
+            height: 25px;
+            width: 50px;
+            object-fit: cover;
           }
-  
-          td {
-            .gigImg {
-              height: 25px;
-              width: 50px;
-              object-fit: cover;
-            }
-  
-            .messageImg {
-              height: 22px;
-              cursor: pointer;
-            }
+
+          .messageImg {
+            height: 22px;
+            cursor: pointer;
           }
-  
-          &:nth-child(even){
-              background-color: #1dbf730f;
-          }
-  
+        }
+
+        &:nth-child(even) {
+          background-color: #1dbf730f;
         }
       }
     }
   }
-  
+}

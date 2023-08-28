@@ -6,7 +6,6 @@ import newRequest from "../../utils/newRequest";
 
 const MyGigs = () => {
   const [device] = useOutletContext();
-  console.log(device);
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 

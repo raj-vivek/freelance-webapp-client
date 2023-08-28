@@ -20,7 +20,6 @@ const Register = () => {
   const [error, setError] = useState("");
 
   const [device] = useOutletContext();
-  console.log(device);
 
   const navigate = useNavigate();
 

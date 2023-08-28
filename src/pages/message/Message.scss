@@ -4,6 +4,7 @@
 
   .container {
     margin: 50px 0;
+    width: 80%;
 
     .chat {
       display: flex;
@@ -15,6 +16,9 @@
       overflow: scroll;
       border: 1px solid lightgray;
       border-radius: 5px;
+      &::-webkit-scrollbar {
+        display: none;
+      }
 
       .messageItem {
         display: flex;
@@ -53,10 +57,10 @@
       align-items: center;
       justify-content: center;
 
-      gap: 40px;
+      gap: 30px;
 
       textarea {
-        width: 80%;
+        width: 85%;
         height: 100px;
         padding: 15px;
         border: 1px solid lightgray;
