@@ -5,8 +5,8 @@ body {
 .navbar {
   display: flex;
   flex-direction: column;
-  justify-content: center; 
-  align-items: center; 
+  justify-content: center;
+  align-items: center;
   font-family: "Montserrat", sans-serif;
   background-color: #013914;
   color: white;
@@ -149,7 +149,6 @@ body {
 
       .link {
         padding: 8px;
-
 
         &:hover {
           color: rgb(34, 34, 34);
