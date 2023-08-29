@@ -101,9 +101,11 @@ const Gigs = () => {
         <div className={`filters ${device}`}>
           <div className="left">
             <span>Budget:</span>
-            <input ref={minRef} type="text" placeholder="min" />
-            <input ref={maxRef} type="text" placeholder="max" />
-            <button onClick={apply}>Apply</button>
+            <div className="inputs">
+              <input ref={minRef} type="text" placeholder="min" />
+              <input ref={maxRef} type="text" placeholder="max" />
+              <button onClick={apply}>Apply</button>
+            </div>
           </div>
           <div className="right">
             <span className="sortBy">Sort By</span>

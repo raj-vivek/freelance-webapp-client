@@ -140,15 +140,16 @@ body {
     }
 
     .menu {
-      width: 80%;
-      max-width: 1400px;
+      width: 85%;
+      max-width: 1350px;
       display: flex;
       justify-content: space-between;
       font-weight: 300;
-      color: gray;
+      color: rgb(75, 75, 75);
 
       .link {
-        padding: 8px 0;
+        padding: 8px;
+
 
         &:hover {
           color: rgb(34, 34, 34);

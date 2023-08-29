@@ -2,16 +2,61 @@
   display: flex;
   justify-content: center;
 
-  .gigContainer {
-    width: 1200px;
-    margin: 50px 0 100px;
+  .container {
+    margin: 40px 0 100px;
     display: flex;
     gap: 30px;
 
+    &.desktop {
+      .left {
+        .slide {
+          .slideContainer {
+            border: 1px solid rgb(197, 197, 197);
+          }
+        }
+      }
+
+      .right {
+        .box {
+          .details {
+            flex-direction: row;
+            gap: 0;
+            justify-content: space-between;
+          }
+        }
+      }
+    }
+
+    &.tabletPortrait, &.tablet, &.mobile{
+      flex-direction: column-reverse;
+
+      .left{
+        flex: 1;
+        width: 100%;
+      }
+
+      .right{
+        flex: 1;
+        width: 100%;
+      }
+    }
+
+    &.mobile{
+      .left{
+        .slide {
+          .slideContainer {
+            img {
+              height: 400px;
+            }
+          }
+        }
+      }
+    }
+
     .left {
       flex: 12;
+      width: 63%;
       display: flex;
-      width: 700px;
       flex-direction: column;
 
       .breadCrumbs {
@@ -22,7 +67,7 @@
       .user {
         display: flex;
         align-items: center;
-        gap: 15px;
+        gap: 1rem;
 
         .pp {
           height: 50px;
@@ -45,14 +90,17 @@
       }
 
       .slide {
-        margin: 40px 0;
+        margin: 30px 0;
+        width: 100%;
         .slideContainer {
-          width: 720px;
+          width: 100%;
+          border-radius: 10px;
           img {
             display: block;
             margin: 0 auto;
-            height: 400px;
-            width: 600px;
+            height: 500px;
+            width: 90%;
+            max-width: 600px;
             object-fit: cover;
           }
         }
@@ -136,6 +184,7 @@
 
     .right {
       flex: 7;
+      width: 17%;
 
       .box {
         position: sticky;
@@ -165,7 +214,9 @@
 
         .details {
           display: flex;
-          justify-content: space-between;
+          flex-direction: column;
+          gap: 0.5rem;
+
           .item {
             display: flex;
             align-items: center;
@@ -202,6 +253,7 @@
           background-color: #1dbf73;
           font-size: 16px;
           color: white;
+          padding: 0 2rem;
 
           &:hover {
             background-color: #19a162;

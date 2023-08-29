@@ -42,8 +42,6 @@ const Reviews = ({ gigId }) => {
     mutation.mutate({ ...newReview, gigId });
   };
 
-  console.log(newReviewError);
-
   return (
     <div className="reviews">
       <h2>Reviews</h2>

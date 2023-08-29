@@ -5,11 +5,9 @@ import { PropTypes } from "prop-types";
 const MarketPlaceCard = ({ img, title }) => {
   return (
     <div className="marketPlaceCard">
-      <div className="marketPlaceContainer">
         <img src={img} alt="" />
         <hr />
         <h4>{title}</h4>
-      </div>
     </div>
   );
 };

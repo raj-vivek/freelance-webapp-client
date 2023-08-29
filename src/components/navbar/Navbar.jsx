@@ -145,7 +145,11 @@ const Navbar = () => {
           ) : (
             <div className="menu">
               {data.map((cat) => (
-                <Link className="link" to="/" key={cat._id}>
+                <Link
+                  className="link"
+                  to={`/gigs?cat=${cat.value}`}
+                  key={cat._id}
+                >
                   {cat.name}
                 </Link>
               ))}

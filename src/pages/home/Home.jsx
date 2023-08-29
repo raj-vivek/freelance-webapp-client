@@ -3,7 +3,6 @@ import "./Home.scss";
 import Featured from "../../components/featured/Featured";
 import TrustedBy from "../../components/trustedBy/TrustedBy";
 import Slide from "../../components/swiperSlider/Slide";
-import { projects } from "../../data";
 import WebsiteFeatures from "../../components/websiteFeatures/WebsiteFeatures";
 import MarketPlace from "../../components/marketPlace/MarketPlace";
 import BusinessFeatures from "../../components/businessFeatures/BusinessFeatures";
@@ -18,7 +17,16 @@ const Home = () => {
 
   const { isLoading, data, error } = useQuery({
     queryKey: ["categories"],
-    queryFn: () => newRequest.get("categories").then((res) => res.data),
+    queryFn: () => newRequest.get("/categories").then((res) => res.data),
+  });
+
+  const {
+    isLoading: gigsIsLoading,
+    data: gigData,
+    error: gigError,
+  } = useQuery({
+    queryKey: ["gigs"],
+    queryFn: () => newRequest.get("/gigs").then((res) => res.data),
   });
 
   return (
@@ -46,7 +54,7 @@ const Home = () => {
                   : 1
               }
               slidesPerGroup={device == "mobile" ? 1 : 2}
-              mousewheel={true}
+              // mousewheel={true}
               title={"Popular Services"}
             >
               {data.map((cat) => (
@@ -59,33 +67,44 @@ const Home = () => {
         )}
       </div>
       <WebsiteFeatures device={device} />
-      <MarketPlace device={device} />
+      {isLoading ? (
+        "Loading"
+      ) : error ? (
+        "Something went wrong"
+      ) : (
+        <MarketPlace device={device} data={data} />
+      )}
       <BusinessFeatures device={device} />
-      <div className="homePageGigSlider">
-        <div className="homePageSliderContainer">
-          <Slide
-            slidesPerView={
-              device == "desktop"
-                ? 4
-                : device == "laptop"
-                ? 3
-                : device == "tabletPortrait"
-                ? 2
-                : 1
-            }
-            slidesPerGroup={2}
-            mousewheel={true}
-            title={"Inspiring work made on Fiwerr"}
-          >
-            {projects.map((card) => (
-              <swiper-slide key={card.id}>
-                <ProjectCard card={card} />
-              </swiper-slide>
-            ))}
-            ;
-          </Slide>
+      {gigsIsLoading ? (
+        "Loading"
+      ) : gigError ? (
+        "Something went wrong"
+      ) : (
+        <div className="homePageGigSlider">
+          <div className="homePageSliderContainer">
+            <Slide
+              slidesPerView={
+                device == "desktop"
+                  ? 4
+                  : device == "laptop"
+                  ? 3
+                  : device == "tabletPortrait"
+                  ? 2
+                  : 1
+              }
+              slidesPerGroup={2}
+              // mousewheel={true}
+              title={"Inspiring work made on Fiwerr"}
+            >
+              {gigData.map((gig) => (
+                <swiper-slide key={gig._id}>
+                  <ProjectCard gig={gig} />
+                </swiper-slide>
+              ))}
+            </Slide>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

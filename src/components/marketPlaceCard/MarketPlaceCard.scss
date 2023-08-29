@@ -1,36 +1,37 @@
 .marketPlaceCard {
   padding: 25px 20px;
-  .marketPlaceContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+  gap: 5px;
+
+  img {
+    height: 50px;
+  }
+
+  hr {
+    width: 50px;
+    height: 2px;
+    border: none;
+    border-radius: 2px;
+    background-color: lightgrey;
+    transition: width 0.3s ease;
+  }
+
+  h4 {
+    font-weight: normal;
+    margin: 5px 0px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    cursor: pointer;
+    text-align: center;
+  }
 
-    img {
-      height: 50px;
-    }
-
+  &:hover {
     hr {
-      width: 50px;
-      height: 2px;
-      border: none;
-      border-radius: 2px;
-      background-color: lightgrey;
-      transition: width 0.3s ease;
-    }
-
-    h4 {
-      font-weight: normal;
-      margin: 5px 0px;
-    }
-
-    &:hover {
-      hr {
-        width: 80px;
-        background-color: #1dbf73;
-      }
+      width: 80px;
+      background-color: #1dbf73;
     }
   }
 }

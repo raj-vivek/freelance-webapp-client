@@ -32,7 +32,7 @@ const GigCard = ({ item }) => {
           )}
           <p>
             {item.desc.length > 100
-              ? item.desc.slice(0, 100) + "..."
+              ? item.desc.slice(0, 90) + "..."
               : item.desc}
           </p>
           <div className="ratings">

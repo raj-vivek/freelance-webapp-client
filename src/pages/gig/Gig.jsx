@@ -3,11 +3,14 @@ import "./Gig.scss";
 import Slide from "../../components/swiperSlider/Slide";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
-import { Link, useParams } from "react-router-dom";
+import { Link, useOutletContext, useParams } from "react-router-dom";
 import Reviews from "../../components/reviews/Reviews";
 
 const Gig = () => {
   const { id } = useParams();
+  const [device] = useOutletContext();
+
+  console.log(device);
 
   const { isLoading, data, error } = useQuery({
     queryKey: ["gig", id],
@@ -45,7 +48,7 @@ const Gig = () => {
       ) : error ? (
         "Something went wrong"
       ) : (
-        <div className="gigContainer">
+        <div className={`container ${device}`}>
           <div className="left">
             <span className="breadCrumbs">
               FIVERR {">"} GRAPHICS & DESIGN {">"}
