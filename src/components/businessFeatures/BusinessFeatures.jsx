@@ -1,7 +1,7 @@
 import React from "react";
 import "./BusinessFeatures.scss";
 import { PropTypes } from "prop-types";
-import { images } from "../../../images";
+import { fiverrMedia, images } from "../../../images";
 
 const BusinessFeatures = ({ device }) => {
   return (
@@ -46,7 +46,7 @@ const BusinessFeatures = ({ device }) => {
         {(device == "desktop" || device == "laptop") && (
           <div className="right">
             <img
-              src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_870,dpr_1.0/v1/attachments/generic_asset/asset/d9c17ceebda44764b591a8074a898e63-1599597624757/business-desktop-870-x1.png"
+              src={fiverrMedia.businessFeauresImage}
               alt=""
             />
           </div>

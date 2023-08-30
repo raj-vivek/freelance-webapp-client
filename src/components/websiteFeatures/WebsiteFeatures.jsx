@@ -1,7 +1,7 @@
 import React from "react";
 import "./WebsiteFeatures.scss";
 import ProtTypes from "prop-types";
-import { images } from "../../../images";
+import { fiverrMedia, images } from "../../../images";
 
 const WebsiteFeatures = ({ device }) => {
   return (
@@ -57,10 +57,7 @@ const WebsiteFeatures = ({ device }) => {
           </div>
         </div>
         <div className="right">
-          <video
-            src="https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/vmvv3czyk2ifedefkau7"
-            controls
-          ></video>
+          <video src={fiverrMedia.websiteFeaturesVideo} controls></video>
         </div>
       </div>
     </div>

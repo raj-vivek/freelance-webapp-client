@@ -50,3 +50,8 @@ export const images = {
   twitter:
     "https://res.cloudinary.com/uzq3tj1v0g/image/upload/v1693394097/fiverr/website%20images/twitter_tbarvp.png",
 };
+
+export const fiverrMedia = {
+  businessFeauresImage: "https://fiverr-res.cloudinary.com/q_auto,f_auto,w_870,dpr_1.0/v1/attachments/generic_asset/asset/d9c17ceebda44764b591a8074a898e63-1599597624757/business-desktop-870-x1.png",
+  websiteFeaturesVideo: "https://fiverr-res.cloudinary.com/video/upload/t_fiverr_hd/vmvv3czyk2ifedefkau7",
+};
