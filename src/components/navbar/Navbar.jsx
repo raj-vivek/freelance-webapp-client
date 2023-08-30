@@ -4,6 +4,7 @@ import "./Navbar.scss";
 import newRequest from "../../utils/newRequest";
 import { useQuery } from "@tanstack/react-query";
 import logout from "../../utils/logout";
+import { images } from "../../../images";
 
 const Navbar = () => {
   // active is false when page is not scrolled, true when page is scrolled. We are changing the navbar styles for if it is scrolled or not.
@@ -92,7 +93,7 @@ const Navbar = () => {
               onMouseEnter={() => setOpen(true)}
               onMouseLeave={() => setOpen(false)}
             >
-              <img src={currentUser.img || "/img/noavatar.jpg"} alt="" />
+              <img src={currentUser.img || images.noavatar} alt="" />
               <span>{currentUser.username}</span>
               {open && (
                 <div className="options">

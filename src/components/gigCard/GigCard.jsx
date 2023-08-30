@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
+import { images } from "../../../images";
 
 const GigCard = ({ item }) => {
   const { isLoading, error, data } = useQuery({
@@ -26,7 +27,7 @@ const GigCard = ({ item }) => {
             "Something went wrong"
           ) : (
             <div className="user">
-              <img src={data.img ? data.img : "./img/noavatar.jpg"} alt="" />
+              <img src={data.img ? data.img : images.noavatar} alt="" />
               <span>{data.username}</span>
             </div>
           )}
@@ -36,7 +37,7 @@ const GigCard = ({ item }) => {
               : item.desc}
           </p>
           <div className="ratings">
-            <img src="./img/star.png" alt="" />
+            <img src={images.star} alt="" />
             <span>
               {!isNaN(item.starNumber / item.totalStars) &&
                 Math.floor(item.starNumber / item.totalStars)}
@@ -45,7 +46,7 @@ const GigCard = ({ item }) => {
         </div>
         <hr />
         <div className="details">
-          <img src="./img/heart.png" alt="" />
+          <img src={images.heart} alt="" />
           <div className="price">
             <span>STARTING AT</span>
             <h3>{item.price}</h3>

@@ -5,12 +5,11 @@ import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import { Link, useOutletContext, useParams } from "react-router-dom";
 import Reviews from "../../components/reviews/Reviews";
+import { images } from "../../../images";
 
 const Gig = () => {
   const { id } = useParams();
   const [device] = useOutletContext();
-
-  console.log(device);
 
   const { isLoading, data, error } = useQuery({
     queryKey: ["gig", id],
@@ -63,7 +62,7 @@ const Gig = () => {
               <div className="user">
                 <img
                   className="pp"
-                  src={dataUser.img || "../img/noavatar.jpg"}
+                  src={dataUser.img || images.noavatar}
                   alt=""
                 />
                 <h4>{dataUser.username}</h4>
@@ -71,7 +70,7 @@ const Gig = () => {
                   {Array(data.stars)
                     .fill()
                     .map((item, i) => (
-                      <img src="/img/star.png" alt="" key={i} />
+                      <img src={images.star} alt="" key={i} />
                     ))}
                   <span>{data.stars}</span>
                 </div>
@@ -98,14 +97,14 @@ const Gig = () => {
                 <h2>About the seller</h2>
 
                 <div className="user">
-                  <img src={dataUser.img || "../img/noavatar.jpg"} alt="" />
+                  <img src={dataUser.img || images.noavatar} alt="" />
                   <div className="userInfo">
                     <h3>Victor Krum</h3>
                     <div className="stars">
                       {Array(data.stars)
                         .fill()
                         .map((item, i) => (
-                          <img src="/img/star.png" alt="" key={i} />
+                          <img src={images.star} alt="" key={i} />
                         ))}
                       <span>{data.stars}</span>
                     </div>
@@ -152,11 +151,11 @@ const Gig = () => {
               <p>{data.shortDesc}</p>
               <div className="details">
                 <div className="item">
-                  <img src="/img/clock.png" alt="" />
+                  <img src={images.clock} alt="" />
                   <span>{data.deliveryTime} Days Delivery</span>
                 </div>
                 <div className="item">
-                  <img src="/img/recycle.png" alt="" />
+                  <img src={images.recycle} alt="" />
                   <span>{data.revisionNumber} Revisions</span>
                 </div>
               </div>
@@ -164,7 +163,7 @@ const Gig = () => {
               <div className="features">
                 {data.features.map((feature) => (
                   <div className="item" key={feature}>
-                    <img src="/img/greencheck.png" alt="" />
+                    <img src={images.greencheck} alt="" />
                     <span>{feature}</span>
                   </div>
                 ))}

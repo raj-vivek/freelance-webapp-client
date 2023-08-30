@@ -1,6 +1,7 @@
 import React from "react";
 import "./WebsiteFeatures.scss";
 import ProtTypes from "prop-types";
+import { images } from "../../../images";
 
 const WebsiteFeatures = ({ device }) => {
   return (
@@ -16,7 +17,7 @@ const WebsiteFeatures = ({ device }) => {
           <h2>A whole world of freelance talent at your fingertips</h2>
           <div className="features">
             <div className="featureTitle">
-              <img src="./img/check.png" alt="" />
+              <img src={images.check} alt="" />
               <h3>The best for every budget</h3>
             </div>
             <p>
@@ -26,7 +27,7 @@ const WebsiteFeatures = ({ device }) => {
           </div>
           <div className="features">
             <div className="featureTitle">
-              <img src="./img/check.png" alt="" />
+              <img src={images.check} alt="" />
               <h3>Quality work done quickly</h3>
             </div>
             <p>
@@ -36,7 +37,7 @@ const WebsiteFeatures = ({ device }) => {
           </div>
           <div className="features">
             <div className="featureTitle">
-              <img src="./img/check.png" alt="" />
+              <img src={images.check} alt="" />
               <h3>Protected payments, every time</h3>
             </div>
             <p>
@@ -46,7 +47,7 @@ const WebsiteFeatures = ({ device }) => {
           </div>
           <div className="features">
             <div className="featureTitle">
-              <img src="./img/check.png" alt="" />
+              <img src={images.check} alt="" />
               <h3>24/7 support</h3>
             </div>
             <p>

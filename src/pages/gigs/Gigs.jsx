@@ -4,6 +4,7 @@ import GigCard from "../../components/gigCard/GigCard";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import { useLocation, useOutletContext } from "react-router-dom";
+import { images } from "../../../images";
 
 const Gigs = () => {
   // sales = Best Seller
@@ -113,7 +114,7 @@ const Gigs = () => {
               <span className="sortType">
                 {sortType === "sales" ? "Best Selling" : "Newest"}
               </span>
-              <img src="./img/down.png" alt="" />
+              <img src={images.down} alt="" />
             </div>
             {sortMenuOpen && (
               <div className="sortMenu">

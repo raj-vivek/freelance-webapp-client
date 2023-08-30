@@ -3,6 +3,7 @@ import { Link, useOutletContext } from "react-router-dom";
 import "./MyGigs.scss";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
+import { images } from "../../../images";
 
 const MyGigs = () => {
   const [device] = useOutletContext();
@@ -87,7 +88,7 @@ const MyGigs = () => {
                   <td>
                     <img
                       className="deleteImg"
-                      src="/img/delete.png"
+                      src={images.delete}
                       alt=""
                       onClick={() => handleDelete(gig.id)}
                     />

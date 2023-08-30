@@ -3,6 +3,7 @@ import "./Review.scss";
 import { PropTypes } from "prop-types";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
+import { images } from "../../../images";
 
 const Review = ({ data }) => {
   const {
@@ -26,7 +27,7 @@ const Review = ({ data }) => {
         "Something went wrong"
       ) : (
         <div className="user">
-          <img src={dataUser.img || "../img/noavatar.jpg"} alt="" />
+          <img src={dataUser.img || images.noavatar} alt="" />
           <div className="info">
             <span>{dataUser.username}</span>
             <div className="country">
@@ -39,18 +40,16 @@ const Review = ({ data }) => {
         {Array(data.star)
           .fill()
           .map((info, i) => (
-            <img src="/img/star.png" alt="" key={i} />
+            <img src={images.star} alt="" key={i} />
           ))}
         <span>{data.star}</span>
       </div>
-      <p>
-        {data.desc}
-      </p>
+      <p>{data.desc}</p>
       <div className="helpful">
         <span>Helpful?</span>
-        <img src="/img/like.png" alt="" />
+        <img src={images.like} alt="" />
         <span>Yes</span>
-        <img src="/img/dislike.png" alt="" />
+        <img src={images.dislike} alt="" />
         <span>No</span>
       </div>
     </div>

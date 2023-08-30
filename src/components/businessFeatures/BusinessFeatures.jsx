@@ -1,6 +1,7 @@
 import React from "react";
 import "./BusinessFeatures.scss";
 import { PropTypes } from "prop-types";
+import { images } from "../../../images";
 
 const BusinessFeatures = ({ device }) => {
   return (
@@ -20,13 +21,13 @@ const BusinessFeatures = ({ device }) => {
           </h3>
           <div className="feature">
             <span>
-              <img src="./img/check.png" alt="" />
+              <img src={images.check} alt="" />
             </span>
             <p>Connect to freelancers with proven business experience</p>
           </div>
           <div className="feature">
             <span>
-              <img src="./img/check.png" alt="" />
+              <img src={images.check} alt="" />
             </span>
             <p>
               Get matched with the perfect talent by a customer success manager{" "}
@@ -34,7 +35,7 @@ const BusinessFeatures = ({ device }) => {
           </div>
           <div className="feature">
             <span>
-              <img src="./img/check.png" alt="" />
+              <img src={images.check} alt="" />
             </span>
             <p>
               Manage teamwork and boost productivity with one powerful workspace

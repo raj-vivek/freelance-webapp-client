@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Featured.scss";
 import { useNavigate } from "react-router-dom";
 import { PropTypes } from "prop-types";
+import { images } from "../../../images";
 
 const Featured = ({ device }) => {
   const [input, setInput] = useState("");
@@ -28,7 +29,7 @@ const Featured = ({ device }) => {
           </h1>
           <form className="search" onSubmit={(e) => handleSubmit(e)}>
             <div className="searchInput">
-              <img className="searchImage" src="./img/search.png" alt="" />
+              <img className="searchImage" src={images.search} alt="" />
               <input
                 type="text"
                 placeholder='Try "building mobile app"'
@@ -74,7 +75,7 @@ const Featured = ({ device }) => {
         </div>
         {(device == "desktop" || device == "laptop") && (
           <div className="right">
-            <img src="./img/man.png" alt="" />
+            <img src={images.man} alt="" />
           </div>
         )}
       </div>

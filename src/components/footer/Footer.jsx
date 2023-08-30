@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import { Link } from "react-router-dom";
+import { images } from "../../../images";
 
 const Footer = ({ device }) => {
   const { isLoading, data, error } = useQuery({
@@ -86,22 +87,22 @@ const Footer = ({ device }) => {
             </div>
             <div className="right">
               <div className="social">
-                <img src="./img/twitter.png" alt="" />
-                <img src="./img/facebook.png" alt="" />
-                <img src="./img/linkedin.png" alt="" />
-                <img src="./img/pinterest.png" alt="" />
-                <img src="./img/instagram.png" alt="" />
+                <img src={images.twitter} alt="" />
+                <img src={images.facebook} alt="" />
+                <img src={images.linkedin} alt="" />
+                <img src={images.pinterest} alt="" />
+                <img src={images.instagram} alt="" />
               </div>
               <div className="info">
                 <div className="link">
-                  <img src="./img/language.png" alt="" />
+                  <img src={images.language} alt="" />
                   <span>English</span>
                 </div>
                 <div className="link">
-                  <img src="./img/coin.png" alt="" />
+                  <img src={images.coin} alt="" />
                   <span>INR</span>
                 </div>
-                <img src="./img/accessibility.png" alt="" />
+                <img src={images.accessibility} alt="" />
               </div>
             </div>
           </div>

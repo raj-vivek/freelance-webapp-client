@@ -3,6 +3,7 @@ import "./Orders.scss";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import { useNavigate, useOutletContext } from "react-router-dom";
+import { images } from "../../../images";
 
 const Orders = () => {
   const [device] = useOutletContext();
@@ -79,7 +80,7 @@ const Orders = () => {
                   <td>
                     <img
                       className="messageImg"
-                      src="/img/message.png"
+                      src={images.message}
                       alt=""
                       onClick={() => {
                         handleContact(order);
