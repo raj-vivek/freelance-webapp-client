@@ -5,22 +5,27 @@
 
   .container {
     display: flex;
+    gap: 3rem;
 
     &.smallScreen {
       flex-direction: column-reverse;
+      gap: 0;
+
+      .left{
+        padding: 1rem 0;
+      }
 
       .right{
-        padding: 50px 0;
+        padding: 3rem 0 1rem 0;
       }
     }
 
     .left {
-      padding-right: 50px;
       flex: 3;
+      padding: 2rem 0;
 
       h2 {
         font-size: 2rem;
-        margin-top: 20px;
       }
 
       .features {
