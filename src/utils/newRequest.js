@@ -2,9 +2,10 @@ import axios from "axios";
 import logout from "./logout";
 
 const newAxiosRequest = axios.create({
-  baseURL: import.meta.env.VITE_BACKEND_URL + "api/",
   // baseURL: "http://localhost:8800/" + "api/",
-  withCredentials: true, // to get cookies
+  baseURL: import.meta.env.VITE_BACKEND_URL + "api/",
+  withCredentials: true, // Send cookies and other credentials
+  crossDomain: true, // Allow cross-domain requests
 });
 
 const newRequest = {
