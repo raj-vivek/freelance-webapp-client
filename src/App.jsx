@@ -18,6 +18,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Pay from "./pages/pay/Pay";
 import Success from "./pages/success/Success";
 import ScrollToTop from "./utils/scrollToTop";
+import NotFound from "./pages/notFound/NotFound";
 
 // Mobile (Smartphone) max-width: 480px
 // Low Resolution Tablets and ipads max-width: 767px
@@ -124,6 +125,10 @@ const App = () => {
         },
       ],
     },
+    {
+      path: "*",
+      element: <NotFound />
+    }
   ]);
 
   return (
