@@ -1,8 +1,8 @@
 import newRequest from "./newRequest";
 
 const logout = async () => {
-  await newRequest.post("auth/logout");
   localStorage.setItem("currentUser", null);
+  await newRequest.post("auth/logout");
 };
 
 export default logout;
