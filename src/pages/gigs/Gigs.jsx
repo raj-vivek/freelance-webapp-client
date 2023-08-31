@@ -21,16 +21,14 @@ const Gigs = () => {
   const { search } = useLocation();
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: ["gigs"],
-    queryFn: () =>
-      newRequest
-        .get(
-          `/gigs${search || "?"}&min=${minRef.current.value}&max=${
-            maxRef.current.value
-          }&sort=${sortType}`
-        )
-        .then((res) => {
-          return res.data;
-        }),
+    queryFn: () => {
+      const getUrl = `/gigs${search || "?"}&min=${minRef.current.value}&max=${
+        maxRef.current.value
+      }&sort=${sortType}`;
+      return newRequest.get(getUrl).then((res) => {
+        return res.data;
+      });
+    },
   });
 
   const {
@@ -39,7 +37,6 @@ const Gigs = () => {
     error: catError,
   } = useQuery({
     queryKey: ["categories"],
-    queryFn: () => newRequest.get("categories").then((res) => res.data),
   });
 
   const reSort = (type) => {

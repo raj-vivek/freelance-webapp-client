@@ -9,7 +9,6 @@ import { images } from "../../../images";
 const Footer = ({ device }) => {
   const { isLoading, data, error } = useQuery({
     queryKey: ["categories"],
-    queryFn: () => newRequest.get("categories").then((res) => res.data),
   });
 
   return (

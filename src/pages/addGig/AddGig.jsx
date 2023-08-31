@@ -85,7 +85,6 @@ const AddGig = () => {
 
   const { isLoading, data, error, isSuccess } = useQuery({
     queryKey: ["categories"],
-    queryFn: () => newRequest.get("categories").then((res) => res.data),
   });
 
   useEffect(() => {

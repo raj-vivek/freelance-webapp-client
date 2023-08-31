@@ -17,7 +17,6 @@ const Home = () => {
 
   const { isLoading, data, error } = useQuery({
     queryKey: ["categories"],
-    queryFn: () => newRequest.get("/categories").then((res) => res.data),
   });
 
   const {
@@ -25,7 +24,7 @@ const Home = () => {
     data: gigData,
     error: gigError,
   } = useQuery({
-    queryKey: ["gigs"],
+    queryKey: ["gigs", "homePage"],
     queryFn: () => newRequest.get("/gigs").then((res) => res.data),
   });
 
