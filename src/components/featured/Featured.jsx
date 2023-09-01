@@ -32,7 +32,7 @@ const Featured = ({ device }) => {
               <img className="searchImage" src={images.search} alt="" />
               <input
                 type="text"
-                placeholder='Try "building mobile app"'
+                placeholder='Try "web"'
                 value={input}
                 onChange={(e) => {
                   setInput(e.target.value);
