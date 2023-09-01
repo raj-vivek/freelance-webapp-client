@@ -5,13 +5,16 @@
 .marketPlace {
   display: flex;
   justify-content: center;
+  padding: 2.5rem 0;
 
-  margin: 70px 0;
   .container {
+    h1{
+      margin-bottom: 1rem;
+    }
+
     .row {
       display: flex;
       flex-wrap: wrap;
-      margin-top: 40px;
 
       .column {
         flex: 16.66%;
