@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import "./Register.scss";
 import upload from "../../utils/upload";
 import newRequest from "../../utils/newRequest";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import useResponsive from "../../customHooks/useResponsive/useResponsive";
 
 const Register = () => {
   const [file, setFile] = useState(null);
@@ -19,7 +20,7 @@ const Register = () => {
 
   const [error, setError] = useState("");
 
-  const [device] = useOutletContext();
+  const device = useResponsive();
 
   const navigate = useNavigate();
 
@@ -112,7 +113,11 @@ const Register = () => {
                 <span className="slider round"></span>
               </label>
             </div>
-            <div className={!user.isSeller ? "buyerDetails" : "buyerDetails visible"}>
+            <div
+              className={
+                !user.isSeller ? "buyerDetails" : "buyerDetails visible"
+              }
+            >
               <label>Phone Number</label>
               <input
                 name="phone"

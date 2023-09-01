@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
 import Footer from "./components/footer/Footer";
@@ -20,51 +20,17 @@ import Success from "./pages/success/Success";
 import ScrollToTop from "./utils/scrollToTop";
 import NotFound from "./pages/notFound/NotFound";
 
-// Mobile (Smartphone) max-width: 480px
-// Low Resolution Tablets and ipads max-width: 767px
-// Tablets Ipads portrait mode max-width:1024px
-// Desktops max-width:1280px
-// Huge size (Larger screen) max-width: 1281px and greater
-
 const App = () => {
   const queryClient = new QueryClient();
-
-  const checkScreenSize = (size) => {
-    if (size < 480) {
-      return "mobile";
-    } else if (size >= 480 && size < 767) {
-      return "tablet";
-    } else if (size >= 767 && size < 1024) {
-      return "tabletPortrait";
-    } else if (size >= 1024 && size < 1280) {
-      return "laptop";
-    } else {
-      return "desktop";
-    }
-  };
-
-  const [device, setDevice] = useState(checkScreenSize(window.innerWidth));
-
-  useEffect(() => {
-    const handleWindowResize = () => {
-      setDevice(checkScreenSize(window.innerWidth));
-    };
-
-    window.addEventListener("resize", handleWindowResize);
-
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
-  }, [device]);
 
   const Layout = () => {
     return (
       <QueryClientProvider client={queryClient}>
         <ScrollToTop />
         <div className="app">
-          <Navbar device={device} />
-          <Outlet context={[device]} />
-          <Footer device={device} />
+          <Navbar />
+          <Outlet />
+          <Footer />
         </div>
       </QueryClientProvider>
     );
@@ -127,8 +93,8 @@ const App = () => {
     },
     {
       path: "*",
-      element: <NotFound />
-    }
+      element: <NotFound />,
+    },
   ]);
 
   return (

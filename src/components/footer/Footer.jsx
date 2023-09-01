@@ -2,14 +2,18 @@ import React from "react";
 import "./Footer.scss";
 import PropTypes from "prop-types";
 import { useQuery } from "@tanstack/react-query";
-import newRequest from "../../utils/newRequest";
 import { Link } from "react-router-dom";
 import { images } from "../../../images";
+import useResponsive from "../../customHooks/useResponsive/useResponsive";
 
-const Footer = ({ device }) => {
+const Footer = () => {
   const { isLoading, data, error } = useQuery({
     queryKey: ["categories"],
   });
+
+  const device = useResponsive();
+
+  // console.count("footer");
 
   return (
     <>

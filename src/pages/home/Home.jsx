@@ -10,10 +10,10 @@ import CategoryCard from "../../components/categoryCard/CategoryCard";
 import ProjectCard from "../../components/projectCard/ProjectCard";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
-import { useOutletContext } from "react-router-dom";
+import useResponsive from "../../customHooks/useResponsive/useResponsive";
 
 const Home = () => {
-  const [device] = useOutletContext();
+  const device = useResponsive();
 
   const { isLoading, data, error } = useQuery({
     queryKey: ["categories"],

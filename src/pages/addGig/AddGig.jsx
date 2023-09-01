@@ -4,7 +4,8 @@ import { INITIAL_STATE, gigReducer } from "../../reducers/gigReducer";
 import upload from "../../utils/upload";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import useResponsive from "../../customHooks/useResponsive/useResponsive";
 
 const AddGig = () => {
   const [singlefile, setSingleFile] = useState(undefined);
@@ -12,7 +13,7 @@ const AddGig = () => {
   const [uploading, setUploading] = useState(false);
   const [submitError, setSubmitError] = useState("");
 
-  const [device] = useOutletContext();
+  const device = useResponsive();
 
   const [state, dispatch] = useReducer(gigReducer, INITIAL_STATE);
 

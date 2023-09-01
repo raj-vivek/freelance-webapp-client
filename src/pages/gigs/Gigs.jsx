@@ -3,8 +3,9 @@ import "./Gigs.scss";
 import GigCard from "../../components/gigCard/GigCard";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
-import { useLocation, useOutletContext } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { images } from "../../../images";
+import useResponsive from "../../customHooks/useResponsive/useResponsive";
 
 const Gigs = () => {
   // sales = Best Seller
@@ -16,7 +17,7 @@ const Gigs = () => {
   const minRef = useRef();
   const maxRef = useRef();
 
-  const [device] = useOutletContext();
+  const device = useResponsive();
 
   const { search } = useLocation();
   const { isLoading, error, data, refetch } = useQuery({

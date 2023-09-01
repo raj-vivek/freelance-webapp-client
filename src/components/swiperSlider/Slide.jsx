@@ -18,6 +18,7 @@ const Slide = ({
   title,
 }) => {
   const swiperRef = useRef(null);
+  // console.count("slide");
 
   useEffect(() => {
     const swiperContainer = swiperRef.current;
@@ -55,7 +56,7 @@ const Slide = ({
 
     Object.assign(swiperContainer, params);
     swiperContainer.initialize();
-  }, []);
+  }, [slidesPerView]);
 
   return (
     <div className="slide">

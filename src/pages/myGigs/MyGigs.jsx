@@ -1,12 +1,13 @@
 import React from "react";
-import { Link, useOutletContext } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./MyGigs.scss";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import { images } from "../../../images";
+import useResponsive from "../../customHooks/useResponsive/useResponsive";
 
 const MyGigs = () => {
-  const [device] = useOutletContext();
+  const device = useResponsive();
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 

@@ -2,11 +2,12 @@ import React from "react";
 import "./Orders.scss";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { images } from "../../../images";
+import useResponsive from "../../customHooks/useResponsive/useResponsive";
 
 const Orders = () => {
-  const [device] = useOutletContext();
+  const device = useResponsive();
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
   const navigate = useNavigate();

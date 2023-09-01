@@ -3,13 +3,14 @@ import "./Gig.scss";
 import Slide from "../../components/swiperSlider/Slide";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
-import { Link, useOutletContext, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Reviews from "../../components/reviews/Reviews";
 import { images } from "../../../images";
+import useResponsive from "../../customHooks/useResponsive/useResponsive";
 
 const Gig = () => {
   const { id } = useParams();
-  const [device] = useOutletContext();
+  const device = useResponsive();
 
   const { isLoading, data, error } = useQuery({
     queryKey: ["gig", id],

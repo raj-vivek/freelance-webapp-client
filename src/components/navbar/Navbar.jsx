@@ -5,53 +5,38 @@ import newRequest from "../../utils/newRequest";
 import { useQuery } from "@tanstack/react-query";
 import logout from "../../utils/logout";
 import { images } from "../../../images";
+import useResponsive from "../../customHooks/useResponsive/useResponsive";
 
 const Navbar = () => {
-  // active is false when page is not scrolled, true when page is scrolled. We are changing the navbar styles for if it is scrolled or not.
+  // BGactive is false when page is not scrolled, true when page is scrolled. We are changing the navbar styles for if it is scrolled or not.
   const [BGactive, setBGActive] = useState(false);
-  // const [menuActive, setMenuActive] = useState(false);
 
   // open is true when user menu dropdown should be open, false when not open.
   const [open, setOpen] = useState(false);
 
-  const checkScreenSize = (size) => {
-    if (size < 480) {
-      return "mobile";
-    } else if (size >= 480 && size < 767) {
-      return "tablet";
-    } else if (size >= 767 && size < 1024) {
-      return "tabletPortrait";
-    } else if (size >= 1024 && size < 1280) {
-      return "laptop";
-    } else {
-      return "desktop";
-    }
-  };
-
-  const [device, setDevice] = useState(checkScreenSize(window.innerWidth));
-
+  const device = useResponsive();
   const location = useLocation();
   const pathName = location.pathname;
 
+  // console.count("nav")
+
   const isActive = () => {
-    window.scrollY > 50 ? setBGActive(true) : setBGActive(false);
-    // window.scrollY > 50 ? setMenuActive(true) : setMenuActive(false);
+    window.scrollY > 50
+      ? !BGactive
+        ? setBGActive(true)
+        : {}
+      : BGactive
+      ? setBGActive(false)
+      : {};
   };
 
   useEffect(() => {
     window.addEventListener("scroll", isActive);
 
-    const handleWindowResize = () => {
-      setDevice(checkScreenSize(window.innerWidth));
-    };
-
-    window.addEventListener("resize", handleWindowResize);
-
     return () => {
       window.removeEventListener("scroll", isActive);
-      window.removeEventListener("resize", handleWindowResize);
     };
-  }, []);
+  }, [device, BGactive]);
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 

@@ -1,12 +1,13 @@
 import React from "react";
 import "./Messages.scss";
-import { Link, useOutletContext } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import moment from "moment/moment";
+import useResponsive from "../../customHooks/useResponsive/useResponsive";
 
 const Messages = () => {
-  const [device] = useOutletContext();
+  const device = useResponsive();
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
@@ -50,7 +51,7 @@ const Messages = () => {
               <tr>
                 <th>{currentUser.isSeller ? "Buyer" : "Seller"}</th>
                 <th>Last Message</th>
-                {(device != "mobile" && device != "tablet") && <th>Date</th>}
+                {device != "mobile" && device != "tablet" && <th>Date</th>}
                 <th>Action</th>
               </tr>
             </thead>
@@ -73,7 +74,7 @@ const Messages = () => {
                       </div>
                     </Link>
                   </td>
-                  {(device != "mobile" && device != "tablet") && (
+                  {device != "mobile" && device != "tablet" && (
                     <td>{moment(item.updatedAt).fromNow()}</td>
                   )}
                   <td>
