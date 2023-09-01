@@ -8,7 +8,7 @@ hr {
 .footer {
   display: flex;
   justify-content: center;
-  padding: 40px 0;
+  padding: 2rem 0;
 
   .container {
     display: flex;
@@ -25,12 +25,12 @@ hr {
         display: flex;
         flex-direction: column;
         gap: 15px;
-        margin: 20px 0;
+        margin: 1.3rem 0;
         flex: 17%;
 
         h4 {
           color: #545454;
-          margin: 15px 0;
+          margin: 0 0 0.5rem;
         }
 
         span {
